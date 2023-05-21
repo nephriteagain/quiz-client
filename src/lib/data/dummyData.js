@@ -1,4 +1,4 @@
-export const URI = 'http://localhost:3000'
+export const URI = 'https://quizzle-createandsolvequizzes.onrender.com'
 
 export const dummyQuizArr = ['', '', '', '', '', '', '', '', '', '', '', ''] 
 

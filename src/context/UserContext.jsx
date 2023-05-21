@@ -23,7 +23,7 @@ export const GlobalProvider = ({children}) => {
 
 
   async function fetchUserData () {
-    await axios.get(`http://localhost:3000/api/v1/profile/${user.id}`, {withCredentials: true})
+    await axios.get(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/profile/${user.id}`, {withCredentials: true})
       .then((res) => {
         setUserQuiz(res.data)
       })
@@ -47,7 +47,7 @@ export const GlobalProvider = ({children}) => {
     setCancelTokenSource(source)
 
     setShowLoadingComponent(true)
-    await axios.get(`http://localhost:3000/api/v1/?page=${page}&date=${date}&title=${title}&author=${author}`, {
+    await axios.get(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/?page=${page}&date=${date}&title=${title}&author=${author}`, {
       withCredentials: true,
       cancelToken: source.token
     })
@@ -76,7 +76,7 @@ export const GlobalProvider = ({children}) => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/user/session', {withCredentials: true})
+    axios.get('https://quizzle-createandsolvequizzes.onrender.com/api/v1/user/session', {withCredentials: true})
       .then((res) => {
         if (res.data.session) {
           setUser(res.data.user)

@@ -43,7 +43,7 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
 
     console.log({_id, email, password})
     axios.post(
-      'http://localhost:3000/api/v1/reset/confirm',
+      'https://quizzle-createandsolvequizzes.onrender.com/api/v1/reset/confirm',
       { _id, email, password },
       {withCredentials: true}
     )

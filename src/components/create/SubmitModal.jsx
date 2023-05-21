@@ -11,7 +11,7 @@ function SubmitModal({formData, setFormData ,setShowSubmitModal, bgModalHeight})
 
   async function submitData() {
 
-    await axios.post(`http://localhost:3000/api/v1/`, formData, {withCredentials: true})
+    await axios.post(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/`, formData, {withCredentials: true})
       .then((res) => {
         console.log(res.data)
         const title = document.querySelector('.title')

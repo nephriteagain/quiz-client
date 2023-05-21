@@ -18,7 +18,7 @@ function Quiz() {
     const match = url.match(regex);
     const captureString = match[1];
 
-    axios.get(`http://localhost:3000/api/v1/quiz/${captureString}`, {withCredentials: true})
+    axios.get(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/quiz/${captureString}`, {withCredentials: true})
       .then(response => {
         let data = response.data        
         // let questions = data.questions
