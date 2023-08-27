@@ -11,7 +11,7 @@ function SignOut() {
   const { user, setUser } = useGlobalContext()
 
   async function logOut() {  
-    await axios.get(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/user/signout`, {withCredentials: true})
+    await axios.get(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/user/signout`, {withCredentials: true})
       .then(res => {
         setUser(null)
       })

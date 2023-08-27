@@ -41,7 +41,7 @@ function SignUp() {
     formData = Object.fromEntries(formData)    
 
 
-    axios.post(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/user/signup`, formData)
+    axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/user/signup`, formData)
       .then((res) => {
         console.log(res.data)
         if (res.data?.email) {

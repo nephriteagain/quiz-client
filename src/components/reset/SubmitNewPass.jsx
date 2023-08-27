@@ -43,7 +43,7 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
 
     console.log({_id, email, password})
     axios.post(
-      'https://quizzle-createandsolvequizzes.onrender.com/api/v1/reset/confirm',
+      `${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/reset/confirm`,
       { _id, email, password },
       {withCredentials: true}
     )

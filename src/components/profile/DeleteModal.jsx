@@ -14,7 +14,7 @@ export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef
   
   async function deleteQuiz(id) {
 
-    axios.post(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/delete`, {id}, {withCredentials: true})
+    axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/delete`, {id}, {withCredentials: true})
       .then(async (res) => {
         await fetchUserData()
       })

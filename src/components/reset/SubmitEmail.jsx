@@ -13,7 +13,7 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
     const formData = new FormData(e.currentTarget)
     const userData = Object.fromEntries(formData)
 
-    await axios.post('https://quizzle-createandsolvequizzes.onrender.com/api/v1/reset', userData, {withCredentials: true})
+    await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/reset`, userData, {withCredentials: true})
       .then((res) => {
         if (res.status === 201) {
           setShowResendTimer(true)

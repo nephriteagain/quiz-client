@@ -35,7 +35,7 @@ function Answer({data, setData}) {
       )
     })
 
-    axios.post(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/quiz/${_id}`, newAnswers)
+    axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/quiz/${_id}`, newAnswers)
       .then((response) => {
         console.log(response.data)
         let score = 0

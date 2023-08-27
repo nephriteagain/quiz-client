@@ -1,4 +1,4 @@
-export const URI = 'https://quizzle-createandsolvequizzes.onrender.com'
+export const URI = `${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}`
 
 export const dummyQuizArr = ['', '', '', '', '', '', '', '', '', '', '', ''] 
 

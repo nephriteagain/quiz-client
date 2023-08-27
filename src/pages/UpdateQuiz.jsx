@@ -26,7 +26,7 @@ export default function UpdateQuiz() {
     const toSubmit = {...quizToUpdate, title: title, questions: questions}
 
     async function fetchUpdatedData() {
-      await axios.post(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/update/${user.id}`, toSubmit, {withCredentials: true})
+      await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/update/${user.id}`, toSubmit, {withCredentials: true})
         .then((res) => {
           navigate('/profile/:profileId')
           setQuizToUpdate(res.data)

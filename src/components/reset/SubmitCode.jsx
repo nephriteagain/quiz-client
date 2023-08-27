@@ -11,7 +11,7 @@ export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, set
 
     console.log(code)
     
-    await axios.post('https://quizzle-createandsolvequizzes.onrender.com/api/v1/reset/verify', {"code" : code}, {withCredentials: true})
+    await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/reset/verify`, {"code" : code}, {withCredentials: true})
       .then((res) => {
         if (res.status === 200) {                    
           set_Id(res.data._id)

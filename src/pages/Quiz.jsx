@@ -18,7 +18,7 @@ function Quiz() {
     const match = url.match(regex);
     const captureString = match[1];
 
-    axios.get(`https://quizzle-createandsolvequizzes.onrender.com/api/v1/quiz/${captureString}`, {withCredentials: true})
+    axios.get(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/quiz/${captureString}`, {withCredentials: true})
       .then(response => {
         let data = response.data        
         // let questions = data.questions
