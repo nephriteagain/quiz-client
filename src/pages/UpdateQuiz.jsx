@@ -21,6 +21,11 @@ export default function UpdateQuiz() {
 
   const navigate = useNavigate()
 
+  /**
+   * 
+   * @param {Event} e 
+   * @description submit the newly updated quiz
+   */
   function submitUpdate(e) {    
     e.preventDefault()
     const toSubmit = {...quizToUpdate, title: title, questions: questions}
@@ -39,7 +44,12 @@ export default function UpdateQuiz() {
   }
 
 
-
+  /**
+   * 
+   * @param {number} questionIndex 
+   * @param {number} optionIndex 
+   * @description delete an option from a specific question
+   */
   function removeOption(questionIndex, optionIndex) {
     const transformedOptions = questions[questionIndex].options.filter((option, index) => {
       return index !== optionIndex
@@ -53,6 +63,11 @@ export default function UpdateQuiz() {
     setQuestions(transformedQuestions)
   }
 
+  /**
+   * 
+   * @param {number} questionIndex 
+   * @description add an option to a specific question
+   */
   function addNewOption(questionIndex) {
     const newOption = [...questions[questionIndex].options, '']
     
@@ -66,6 +81,7 @@ export default function UpdateQuiz() {
     setQuestions(newQuestions)
   }
 
+  
   function addNewQuestion() {
     const newQuestions = [
       ...questions,

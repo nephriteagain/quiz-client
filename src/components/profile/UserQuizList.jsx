@@ -22,6 +22,10 @@ function UserQuizList({userQuiz, setUserQuiz, fetchUserData}) {
 
   const navigate = useNavigate()
 
+  /**
+   * 
+   * @param {string} id show information and actions about selected quiz
+   */
   function displayModal(id) {
     const dataToDisplay = userQuiz.find((quiz) => {
       return quiz._id === id
@@ -32,6 +36,12 @@ function UserQuizList({userQuiz, setUserQuiz, fetchUserData}) {
 
   }
 
+  /**
+   * 
+   * @param {string} id 
+   * @param {Event} e 
+   * @description show the delete confirmation modal
+   */
   function confirmDelete(id, e) {
 
     setShowDeleteModal(true)
@@ -40,6 +50,12 @@ function UserQuizList({userQuiz, setUserQuiz, fetchUserData}) {
     deleteRef.current = e.currentTarget.parentNode
   }
 
+  /**
+   * 
+   * @param {quizObject} quiz 
+   * @param {Event} e 
+   * @description redirect to the route where quizzes can be updated an resubmitted to the server
+   */
   function confirmUpdate(quiz, e) {
     setQuizToUpdate(quiz)
     navigate(`/profile/${user.id}/update/${quiz._id}`)

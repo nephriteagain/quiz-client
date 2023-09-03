@@ -12,7 +12,9 @@ export default function QuizList({quizList}) {
   
   const { fetchQuizList, setQuizPage, showLoadingComponent, ascending } = useGlobalContext()
   
-
+  /**
+   * @desription queries the server to go back to page 1
+   */
   async function backToPageOne() {
     await fetchQuizList(1, ascending)
       .then(res => {

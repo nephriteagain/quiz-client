@@ -11,6 +11,11 @@ function SignIn() {
 
   const navigate = useNavigate()
 
+  /**
+   * 
+   * @param {Event} e 
+   * @description sign in form handler
+   */
   function handleSubmit(e) {
     e.preventDefault()
 

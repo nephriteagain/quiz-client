@@ -7,6 +7,11 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
 
   const resendRef = useRef()
 
+  /**
+   * 
+   * @param {Event} e 
+   * @description user makes a password rest reqeust to the server
+   */
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -28,6 +33,10 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
     
   }
 
+  /**
+   * @description shows the password reset form where 
+   * the reset code will be written
+   */
   function showResetForm() {
     if (timer === 0) {
       setShowForm(true)

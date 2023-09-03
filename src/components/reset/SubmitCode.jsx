@@ -5,7 +5,13 @@ import axios from "axios"
 export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, setEmail, setShowPassResetForm}) {
     const [ code, setCode ] = useState('')
 
-
+  /**
+   * 
+   * @param {Event} e 
+   * @description password reset form function, this is the stage where
+   * a code has been sent to the email and the user submits it to the
+   * db for confimation
+   */
   async function handleSubmit(e) {
     e.preventDefault()
 

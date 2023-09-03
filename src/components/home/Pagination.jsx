@@ -14,6 +14,11 @@ function Pagination() {
 
   const dateRef = useRef(null)
 
+  /**
+   * 
+   * @param {number} pageIndex the page requested by the user
+   * @description handles the pagination for quiz list
+   */
   async function quizPagination(pageIndex) {
 
     const page = pageNums.find((page, index) => {
@@ -33,6 +38,13 @@ function Pagination() {
       })
   }
 
+  /**
+   * 
+   * @param {boolean} increment 
+   * @description edits the page finder buttons,
+   * if true: from [1,2,3,4,5] to [2,3,4,5,6]
+   * if false: from [3,4,5,6,7] to [2,3,4,5,6]
+   */
   function incrementPageFinder(increment) {
 
 

@@ -8,7 +8,9 @@ function SubmitModal({formData, setFormData ,setShowSubmitModal, bgModalHeight})
   console.log(formData, 'formdata')
   const { fetchUserData, fetchQuizList, setQuizPage } = useGlobalContext()
 
-
+  /**
+   * @description submits the newly created quiz to the server
+   */
   async function submitData() {
 
     await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/`, formData, {withCredentials: true})

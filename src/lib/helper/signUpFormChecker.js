@@ -1,24 +1,34 @@
-export function matchPasswordChecker(password, confirmPass, callback) {
+/**
+ * 
+ * @param {string} password initial password given
+ * @param {string} confirmPass password confirmation
+ * @returns {boolean}  confirms if the password matches
+ * @description checks if the password that is submitted by a user is matched
+ */
+export function matchPasswordChecker(password, confirmPass,) {
     if (password === '' || confirmPass === '') {
       return
     }
-
-    if (password === confirmPass) {
-    return callback(true)
-  } else {
-    return callback(false)
-  }
+    return password === confirmPass
 }
 
-export function passwordLengthChecker(password, callback) {
-  if (password.length >= 6) {
-    callback(true)
-  } else {
-    callback(false)
-  }
+/**
+ * 
+ * @param {string} password
+ * @returns {boolean} that confirms if the length of the password is enough
+ * @description checks if the password provided by user is in appropriate length
+ */
+export function passwordLengthChecker(password) {
+  return password.length >= 6
 }
 
-export function passwordCharacterChecker(password, callback) {
+/**
+ * 
+ * @param {string} password 
+ * @returns {boolean}
+ * @description check if a password has the right designated character
+ */
+export function passwordCharacterChecker(password) {
   let hasUpper = false
   let hasLower = false
   let hasNum = false
@@ -35,23 +45,20 @@ export function passwordCharacterChecker(password, callback) {
     }
 
   })
-  if (hasUpper && hasLower && hasNum) {
-    return callback(true)
-  } else {
-    return callback(false)
-  }
+  return (hasUpper && hasLower && hasNum)
 
 }
 
-export function specialSymbolChecker(password, callback) {
+/**
+ * 
+ * @param {string} password 
+ * @returns {boolean}
+ * @description check if the password contains a special symbol
+ */
+export function specialSymbolChecker(password) {
   const regex = /[^a-zA-Z0-9]/g
 
-  if (regex.test(password)) {
-    return callback(false)
-  } else {
-    return callback(true)
-  }
-
+  return regex.test(password)
 
 }
 

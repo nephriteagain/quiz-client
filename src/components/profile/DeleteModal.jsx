@@ -12,6 +12,11 @@ export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef
 
   const modalRef = useRef()
   
+  /**
+   * 
+   * @param {string} id quiz id
+   * @description permanently delete the selected quiz from the db
+   */
   async function deleteQuiz(id) {
 
     axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/delete`, {id}, {withCredentials: true})
@@ -26,6 +31,9 @@ export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef
     setQuizDeleteId(null)
   }
 
+  /**
+   * close the delete confirmation modal
+   */
   function cancelDelete() {
     setShowDeleteModal(false)
   }

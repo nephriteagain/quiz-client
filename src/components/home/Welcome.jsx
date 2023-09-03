@@ -4,14 +4,15 @@ import { Link } from "react-router-dom"
 function Welcome() {
   const { user } = useGlobalContext()
 
-  const firstNameCamel = user?.firstName.split('').map((char, index) => {
+
+  const firstNamePascal = user?.firstName.split('').map((char, index) => {
     if (index === 0 ) {
       return char.toUpperCase()
     }
     return char
   }).join('')
 
-  const lastNameCamel = user?.lastName.split('').map((char, index) => {
+  const lastNamePascal = user?.lastName.split('').map((char, index) => {
     if (index === 0 ) {
       return char.toUpperCase()
     }
@@ -29,7 +30,7 @@ function Welcome() {
       </Link>
       </span>
       <p className="inline font-semibold">
-        {`Welcome, ${firstNameCamel} ${lastNameCamel}!`}
+        {`Welcome, ${firstNamePascal} ${lastNamePascal}!`}
       </p>
 
     </div>

@@ -21,6 +21,9 @@ export const GlobalProvider = ({children}) => {
   const [ timer, setTimer ] = useState(60)
   const [ showPassResetForm, setShowPassResetForm ] = useState(false)
 
+  /**
+   * @description fetches all user data including all the users quiz made
+   */
   async function fetchUserData () {
     await axios.get(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/profile/${user.id}`, {withCredentials: true})
       .then((res) => {
@@ -31,10 +34,18 @@ export const GlobalProvider = ({children}) => {
       })
   }
   
-  async function fetchQuizList(page, sortByDate, sortByTitle, sortByAuthor) {
-    const date = sortByDate || -1
-    const title = sortByTitle || ''
-    const author = sortByAuthor || ''
+  /**
+   * 
+   * @param {number} page page requested by user
+   * @param {number|string} sortByDate ascending or descending
+   * @param {string} sortByTitle ascending or descending
+   * @param {string} sortByAuthor ascending or descending
+   * @description fetches new quizzes based on user filters
+   */
+  async function fetchQuizList(page, sortByDate = -1, sortByTitle = '', sortByAuthor = '') {
+    const date = sortByDate
+    const title = sortByTitle
+    const author = sortByAuthor
 
     // Cancel previous request
     if (cancelTokenSource) {

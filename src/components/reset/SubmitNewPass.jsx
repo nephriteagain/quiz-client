@@ -64,10 +64,10 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
   }
 
   useEffect(() => {
-    matchPasswordChecker(password, confirmPass, setMatchBool)
-    passwordLengthChecker(password, setLengthBool)
-    passwordCharacterChecker(password, setCharBool)
-    specialSymbolChecker(password, setSymbolBool)
+    setMatchBool(matchPasswordChecker(password, confirmPass))
+    setLengthBool(passwordLengthChecker(password))
+    setCharBool(passwordCharacterChecker(password))
+    setSymbolBool(specialSymbolChecker(password))
     
     if (lengthBool && charBool && symbolBool && matchBool) {
       setPasswordValid(true)

@@ -10,7 +10,11 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
 
   const navigate = useNavigate()
 
-  function handleSubmit(e) {
+  /**
+   * 
+   * @description adds the newly created question to the quiz area
+   */
+  function createQuestion(e) {
     e.preventDefault()
     
     const { firstName, lastName, id } = user
@@ -74,16 +78,26 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
 
   }
 
+  /**
+   * @description opens confirmation modal of saving the quiz to the db
+   */
   function submitData() {
     setShowSubmitModal(true)
   }
 
+  /**
+   * @description adds new option to the question
+   */
   function addOptions(e) {
     e.preventDefault()
 
     setOptionList([...optionList, ""])
   }
 
+  /**
+   * @param {number} index the position of the selected option
+   * @description removes selected option to the question
+   */
   function removeOption(e, index) {
     e.preventDefault()
     
@@ -92,6 +106,11 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
     setOptionList(optionListCopy)
   }
 
+  /**
+   * 
+   * @param {number} indexRef  the position of the selected option
+   * @description attached to an <input/> element controls its inputs
+   */
   function trackOptionChange(e, indexRef) {
     let value = e.target.value
     let optionListCopy = optionList.map((option, index) => {
@@ -108,7 +127,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
   return (
     <div className='md:basis-1/2 mt-16'>
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={createQuestion}>
         <h3 className="5 text-3xl font-bold mb-5">Create a New Quiz</h3>
         <div className='mb-12'>
           <label 

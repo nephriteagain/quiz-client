@@ -29,6 +29,11 @@ function SignUp() {
   const navigate = useNavigate()
 
 
+  /**
+   * 
+   * @param {Event} e 
+   * @description sign up form handler 
+   */
   function handleSubmit(e) {
     e.preventDefault()
 

@@ -11,11 +11,21 @@ function SearchQuiz() {
 
   const { quizPage, fetchQuizList, searchText, setSearchText, ascending, setAscending } = useGlobalContext()
 
+  /**
+   * 
+   * @param {Event}
+   * @description changes search criteria between title and author
+   */
   function switchSearchCriteria(e) {
     const criteria = e.currentTarget.value
     setSearchCriteria(criteria)
   }
 
+  /**
+   * 
+   * @param {Event} e 
+   * @description change search criteria from asceding to descending
+   */
   function switchOrder(e) {
     const order = e.currentTarget.value
     setAscending(order)

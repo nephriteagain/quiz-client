@@ -1,3 +1,7 @@
+/**
+ * 
+ * @param {string} page string represtation of a page number 
+ */
 export function paginationButtonStyle(page) {
   const buttons = document.querySelectorAll('.pagination-button')
   

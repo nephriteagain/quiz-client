@@ -11,6 +11,11 @@ function QuestionList({formData, setFormData}) {
   const copyRef=  useRef()
   const documentRef =useRef()
 
+  /**
+   * 
+   * @param {number} refIndex  the index of the to be deleted quetion
+   * @description deletes the selected question
+   */
   function handleDelete(refIndex) {
 
     const questionsCopy = [...formData.questions]
