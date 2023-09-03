@@ -4,11 +4,11 @@ import axios from 'axios'
 
 import { BsCheck2 } from 'react-icons/bs'
 import { RxCross2 } from 'react-icons/rx'
+import { RotatingLines } from 'react-loader-spinner'
 
 
 
-
-export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef, setQuizDeleteId, showDeleteModal, fetchUserData}) {
+export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef, setQuizDeleteId, showDeleteModal, fetchUserData, loading, setLoading}) {
 
   const modalRef = useRef()
   
@@ -18,17 +18,20 @@ export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef
    * @description permanently delete the selected quiz from the db
    */
   async function deleteQuiz(id) {
-
-    axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/delete`, {id}, {withCredentials: true})
+    setLoading(true)
+    await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/delete`, {id}, {withCredentials: true})
       .then(async (res) => {
         await fetchUserData()
       })
       .catch((err) => {
         console.log(err)
       })
+      .finally(() => {
+        setShowDeleteModal(false)
+        setLoading(false)
+        setQuizDeleteId(null)
+      })
       
-    setShowDeleteModal(false)
-    setQuizDeleteId(null)
   }
 
   /**
@@ -68,13 +71,16 @@ export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef
       </div>
       <div>
         <div className='text-center pb-3'>
-          <button className='bg-red-500 text-white px-2 py-1 rounded-md me-2 shadow-md drop-shadow-md hover:bg-red-600 transition-all duration-100 active:scale-95'
+          <button className='bg-red-500 text-white px-2 py-1 rounded-md me-2 shadow-md drop-shadow-md hover:bg-red-600 transition-all duration-100 active:scale-95 disabled:opacity-70'
             onClick={() => deleteQuiz(deleteQuizId)}
-          >
-          <BsCheck2 className='inline me-1'/>Delete 
+            disabled={loading}
+          >                        
+            <BsCheck2 className='inline me-1'/>{loading ? 'Deleting...' : 'Delete'}
+          
           </button>
-          <button className='bg-green-500 text-white px-2 py-1 rounded-md ms-2 shadow-md drop-shadow-md hover:bg-green-600 transition-all duration-100 active:scale-95'
+          <button className='bg-green-500 text-white px-2 py-1 rounded-md ms-2 shadow-md drop-shadow-md hover:bg-green-600 transition-all duration-100 active:scale-95 disabled:opacity-70'
             onClick={cancelDelete}
+            disabled={loading}
           >
           <RxCross2 className='inline me-1'/>Cancel
           </button>

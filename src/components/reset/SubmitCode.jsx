@@ -1,8 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
+import { RotatingLines } from 'react-loader-spinner'
 
-
-export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, setEmail, setShowPassResetForm}) {
+export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, setEmail, setShowPassResetForm, loading, setLoading}) {
     const [ code, setCode ] = useState('')
 
   /**
@@ -14,7 +14,7 @@ export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, set
    */
   async function handleSubmit(e) {
     e.preventDefault()
-
+    setLoading(true)
     console.log(code)
     
     await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/reset/verify`, {"code" : code}, {withCredentials: true})
@@ -29,6 +29,7 @@ export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, set
       .catch(err => {
         console.log(err)
       })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -46,11 +47,24 @@ export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, set
           name="code" 
           required value={code} 
           onChange={(e) => setCode(e.currentTarget.value)}
-          className='block mt-2 mb-4 min-w-[50%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-4 py-1 text-sm'
+          className=' block mt-2 mb-4 min-w-[50%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-4 py-1 text-sm'
         />
-        <input type="submit" value='submit code' 
-          className="bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100"
-        />
+        <button type="submit"
+          className="flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
+          disabled={loading}
+        >
+          {
+          loading ?
+          <RotatingLines 
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="25"
+            visible={true}
+          /> : 
+          'submit code'
+        }
+        </button>
       </form>
     </div>
   )

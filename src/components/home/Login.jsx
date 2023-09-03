@@ -2,11 +2,12 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useGlobalContext } from "../../context/UserContext"
 import SignOut from "../user/Signout"
+import axios from "axios"
 
 function Login() {
   const { user, setUser } = useGlobalContext()
   const [ showLogin, setShowLogin ] = useState(true)
-  
+  const [ loading, setLoading ] = useState(false)
 
   const navigate = useNavigate()
 
@@ -28,6 +29,7 @@ function Login() {
    * @description you what this do right
    */
   async function logOut() {  
+    setLoading(true)
     await axios.get(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/user/signout`, {withCredentials: true})
       .then(res => {
         setUser(null)
@@ -35,6 +37,7 @@ function Login() {
       .catch(err => {
         console.log(err)
       })
+      .finally(() => setLoading(false))
   }
 
   useEffect(() => {
@@ -68,6 +71,7 @@ function Login() {
         <SignOut 
           className='text-md px-3 py-1 bg-blue-100  rounded-xl text-stone-500 shadow-md drop-shadow-md hover:scale-110 active:scale-100 transition-all duration-150'
           handleClick={logOut}
+          loading={loading}
         />
     </section>
   )

@@ -8,10 +8,10 @@ import {AiOutlineMinusCircle } from 'react-icons/ai'
 import { MdDelete} from 'react-icons/md'
 import { TiDelete } from 'react-icons/ti'
 import { BsCheckCircleFill} from 'react-icons/bs'
+import { RotatingLines } from "react-loader-spinner"
 
 
-
-export default function UpdateQuiz() {
+export default function UpdateQuiz({loading, setLoading}) {
   const { quizToUpdate, setQuizToUpdate, user, fetchUserData } = useGlobalContext()
 
   const [ title, setTitle ] = useState(quizToUpdate.title)
@@ -28,6 +28,7 @@ export default function UpdateQuiz() {
    */
   function submitUpdate(e) {    
     e.preventDefault()
+    setLoading(true)
     const toSubmit = {...quizToUpdate, title: title, questions: questions}
 
     async function fetchUpdatedData() {
@@ -38,6 +39,7 @@ export default function UpdateQuiz() {
           fetchUserData()
         })
         .catch((err) => console.log(err))
+        .finally(() => setLoading(false))
     }
 
     fetchUpdatedData()
@@ -255,10 +257,22 @@ export default function UpdateQuiz() {
           Add New Question
         </div>
         <div className="flex items-center justify-center">
-          <input className="cursor-pointer bg-green-700 text-white px-3 py-2 mb-8 rounded-lg me-auto hover:scale-110 active:scale-95 transition-all duration-100 shadow-lg drop-shadow-lg" 
+          <button className="flex items-center justify-center min-w-[5.6rem] cursor-pointer bg-green-700 text-white px-3 py-2 mb-8 rounded-lg me-auto hover:scale-110 active:scale-95 transition-all duration-100 shadow-lg drop-shadow-lg disabled:opacity-70" 
             type="submit" 
-            value='Save Changes'
-          />
+            disabled={loading}
+          >
+            {
+          loading ?
+          <RotatingLines 
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="25"
+            visible={true}
+          /> : 
+          'Save Changes'
+        }
+          </button>
           <span className="cursor-pointer bg-green-700 text-white px-3 py-2 mb-8 rounded-lg ms-auto hover:scale-110 active:scale-95 transition-all duration-100 shadow-lg drop-shadow-lg"
             onClick={() => navigate('/profile/:profileId')}
           >

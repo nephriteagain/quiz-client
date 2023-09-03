@@ -6,7 +6,7 @@ import SubmitNewPass from '../components/reset/SubmitNewPass'
 
 import { useGlobalContext } from '../context/UserContext'
 
-function Reset() {
+function Reset({loading, setLoading, submitLoading, setSubmitLoading, newPassLoading, setNewPassLoading}) {
 
   const [ showCodeInput, setShowCodeInput ] = useState(false)
   const [ _id, set_Id ] = useState(null)
@@ -21,10 +21,35 @@ function Reset() {
       </h1>
     { !showPassResetForm ?
       <>
-      <SubmitEmail showCodeInput={showCodeInput} setShowCodeInput={setShowCodeInput} timer={timer} setTimer={setTimer}/>
-      { showCodeInput && <SubmitCode showCodeInput={showCodeInput} setShowCodeInput={setShowCodeInput} set_Id={set_Id} setEmail={setEmail} setShowPassResetForm={setShowPassResetForm}/>}
+      <SubmitEmail 
+        showCodeInput={showCodeInput} 
+        setShowCodeInput={setShowCodeInput} 
+        timer={timer} 
+        setTimer={setTimer}
+        loading={loading}
+        setLoading={setLoading}
+      />
+      { showCodeInput && 
+        <SubmitCode 
+          showCodeInput={showCodeInput} 
+          setShowCodeInput={setShowCodeInput} 
+          set_Id={set_Id} 
+          setEmail={setEmail} 
+          setShowPassResetForm={setShowPassResetForm}
+          loading={submitLoading}
+          setLoading={setSubmitLoading}
+        />
+        }
       </> :
-      <SubmitNewPass _id={_id} email={email} setShowCodeInput={setShowCodeInput} set_Id={set_Id} setEmail={setEmail}  />
+      <SubmitNewPass 
+        _id={_id} 
+        email={email} 
+        setShowCodeInput={setShowCodeInput} 
+        set_Id={set_Id} 
+        setEmail={setEmail}  
+        loading={newPassLoading}
+        setLoading={setNewPassLoading}
+      />
     }
     </div>
   )

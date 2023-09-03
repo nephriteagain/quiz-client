@@ -15,13 +15,18 @@ import Error from './pages/Error'
 
 
 import './App.css'
+import { useState } from 'react'
 
 function App() {
 
   const { user, quizList, setQuizList } = useGlobalContext()
   let { quizId, profileId, editQuizId } = useParams()
-  
-
+  const [ signInLoading, setSignInLoading ] = useState(false)  
+  const [ sendEmailLoading, setSendEmailLoading ] = useState(false)
+  const [ submitCodeLoading , setSubmitCodeLoading ] = useState(false)
+  const [ newPassLoading, setNewPassLoading ] = useState(false)
+  const [ signupLoading, setSignupLoading ] = useState(false)
+  const [ updateLoading, setUpdateLoading ] = useState(false)
   return (
     <>
 
@@ -30,11 +35,22 @@ function App() {
         <Route exact path='/' element={<Home quizList={quizList} setQuizList={setQuizList}/>}/>
         { user && <Route path='/create' element={<Create />} /> }
         <Route path='/quiz/:quizId' element={<Quiz quizList={quizList}/>}/>
-        <Route path='/user/signin' element={<SignIn />} />
-        <Route path='/user/signup' element={<SignUp />} />
-        <Route path='/user/reset' element={<Reset />} />
+        <Route path='/user/signin' element={<SignIn loading={signInLoading} setLoading={setSignInLoading} />} />
+        <Route path='/user/signup' element={<SignUp loading={signupLoading} setLoading={setSignupLoading} />} />
+        <Route 
+          path='/user/reset' 
+          element={
+            <Reset 
+              loading={sendEmailLoading} 
+              setLoading={setSendEmailLoading} 
+              submitLoading={submitCodeLoading} 
+              setSubmitLoading={setSubmitCodeLoading}
+              newPassLoading={newPassLoading}
+              setNewPassLoading={setNewPassLoading}
+            />} 
+        />
         { user && <Route path='/profile/:profileId' element={<Profile />} /> }
-        { user && <Route path='/profile/:profileId/update/:editQuizId' element={<UpdateQuiz />} />}
+        { user && <Route path='/profile/:profileId/update/:editQuizId' element={<UpdateQuiz loading={updateLoading} setLoading={setUpdateLoading} />} />}
         <Route path='*' element={<Error />} />
       </Routes>
     </Router>

@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react"
 import axios from 'axios'
+import { RotatingLines } from "react-loader-spinner"
 
-export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, setTimer}) {
+export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, setTimer, loading, setLoading, }) {
   const [ showResendTimer, setShowResendTimer ] = useState(false)
   const [ showForm, setShowForm ] = useState(true)
 
@@ -14,7 +15,7 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
    */
   async function handleSubmit(e) {
     e.preventDefault()
-
+    setLoading(true)
     const formData = new FormData(e.currentTarget)
     const userData = Object.fromEntries(formData)
 
@@ -29,6 +30,7 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
       .catch((err) => {
         console.log(err)
       })
+      .finally(() => setLoading(false))
 
     
   }
@@ -77,9 +79,23 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
         <input type="email" name='email' required
           className="block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"
           />
-        <input type="submit" value='send code to email' 
-          className="bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100"
-          />
+        <button type="submit" 
+          className="flex items-center justify-center min-w-[9rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
+          disabled={loading}
+          >
+            {
+            loading ? 
+            <RotatingLines 
+                strokeColor="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="25"
+                visible={true}
+             /> :
+              'send code to email'
+            }
+            
+        </button>
       </form>
       }
       { showResendTimer &&

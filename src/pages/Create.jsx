@@ -15,6 +15,7 @@ function Create() {
   const [formData, setFormData] = useState({})
   const [ showSubmitModal, setShowSubmitModal ] = useState(false)
   const [ bgModalHeight , setBgModalHeight ]  = useState(window.innerHeight)
+  const [ loadingQuiz, setLoadingQuiz ] = useState(false)
 
 useEffect(() => {
   window.onresize = () => {
@@ -35,6 +36,8 @@ useEffect(() => {
         setFormData={setFormData}
         setShowSubmitModal={setShowSubmitModal}
         bgModalHeight={bgModalHeight}
+        loading={loadingQuiz}
+        setLoading={setLoadingQuiz}
       />
       }
       <div className='container md:flex md:flex-row'>

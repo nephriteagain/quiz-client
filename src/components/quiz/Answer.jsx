@@ -6,10 +6,10 @@ import {GrRadialSelected, GrRadial} from 'react-icons/gr'
 // import {BiUpvote, BiDownvote} from 'react-icons/bi' tbc
 
 import lowerRoman from "../../lib/data/lowerRoman"
-
+import { RotatingLines } from "react-loader-spinner"
 
 // split this code
-function Answer({data, setData}) {
+function Answer({data, setData, loading, setLoading}) {
   const { title, createdBy: author, questions, _id, votes } = data
   const [ showResult, setShowResult ] = useState(false)
   const [ result, setResult ] = useState({})
@@ -19,6 +19,7 @@ function Answer({data, setData}) {
 
   function handleSubmit(e) {
     e.preventDefault()
+    setLoading(true)
     const formData = new FormData(e.currentTarget)
     const answers = Object.fromEntries(formData)
     const questions = Object.entries(answers)
@@ -53,6 +54,7 @@ function Answer({data, setData}) {
         setShowResult(true)
       })
       .catch((err) => console.log(err, 'error'))
+      .finally(() => setLoading(false))
       
     
     e.currentTarget.reset()
@@ -115,10 +117,23 @@ function Answer({data, setData}) {
         })}
       </ol>
       <br/>
-      <input 
+      <button 
         type="submit" 
-        className="bg-green-300 px-2 py-1 rounded-md mb-5 drop-shadow-md hover:bg-green-600 hover:text-white transtion-all duration-100"
-      />
+        className="flex items-center justify-center min-w-[6rem] bg-green-300 px-2 py-1 rounded-md mb-5 drop-shadow-md hover:bg-green-600 hover:text-white transtion-all duration-100 disabled:opacity-70"
+        disabled={loading}
+      >
+        {
+          loading ?
+          <RotatingLines 
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="25"
+            visible={true}
+          /> : 
+          'submit'
+        }
+      </button>
       {/* <div className="absolute top-12 right-6 flex flex-col items-center justify-center">
         <span className="text-xl mb-1 text-green-700 hover:scale-110 active:scale-95 transition-all duration-100">
           <BiUpvote />

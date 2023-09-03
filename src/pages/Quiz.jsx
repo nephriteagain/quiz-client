@@ -10,7 +10,7 @@ import AnswerLoading from '../components/quiz/AnswerLoading'
 function Quiz() {
   const [data, setData] = useState({})
   const [ showAnswerLoadingComponent, setShowAnswerLoadingComponent ] = useState(true)
-
+  const [ answerLoading, setAnswerLoading ] = useState(false)
 
   useEffect(() => {
     const url = document.URL;
@@ -40,7 +40,7 @@ function Quiz() {
     {
     showAnswerLoadingComponent ?
     <AnswerLoading /> :
-    <Answer data={data} setData={setData}/>
+    <Answer data={data} setData={setData} loading={answerLoading} setLoading={setAnswerLoading}/>
     }
     
     <div className='text-xl bg-yellow-100 px-2 py-1 shadow-md drop-shadow-md rounded-lg w-fit mx-auto mb-4 hover:scale-110 active:scale-95 transition-all duration-100'>

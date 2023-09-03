@@ -5,7 +5,7 @@ import { useNavigate} from 'react-router-dom'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { RxCross2 } from 'react-icons/rx'
 import { useGlobalContext } from "../context/UserContext"
-
+import { RotatingLines } from "react-loader-spinner"
 import {
   matchPasswordChecker,
   passwordLengthChecker,
@@ -16,7 +16,7 @@ import {
 
 
 
-function SignUp() {
+function SignUp({loading, setLoading}) {
   const [ password, setPassword ] = useState('')
   const [ confirmPass, setConfirmPass ] = useState('')
   const [ samePassword, setSamePassword ] = useState(false)
@@ -40,7 +40,7 @@ function SignUp() {
     if ( !samePassword || !digitBool || !symbolBool || !hasNoSpecialSymbolBool) {
       return
     }
-
+    setLoading(true)
 
     let formData = new FormData(e.currentTarget)
     formData = Object.fromEntries(formData)    
@@ -57,6 +57,7 @@ function SignUp() {
         }
       })
       .catch((err) => console.log(err.message))
+      .finally(() => setLoading(false))
   }
 
   useEffect(() => {
@@ -180,9 +181,22 @@ function SignUp() {
             </div>
           }
           <div>
-            <input type="submit" value='Submit'
-              className="px-2 py-1 bg-green-300 rounded-lg drop-shadow-md hover:scale-110 mt-4"
-            />
+            <button type="submit"
+              className="px-2 py-1 bg-green-300 rounded-lg drop-shadow-md hover:scale-110 mt-4 disabled:opacity-70" 
+              disabled={loading}
+            >
+              {
+              loading ? 
+              <RotatingLines 
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="25"
+                  visible={true}
+              /> :
+              'Submit'
+              }
+            </button>
           </div>
         </form>
         

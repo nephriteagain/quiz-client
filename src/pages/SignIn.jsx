@@ -1,14 +1,13 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { useGlobalContext } from "../context/UserContext"
 import { useNavigate } from "react-router-dom"
+import { RotatingLines } from 'react-loader-spinner'
 
 
 
-
-function SignIn() {
+function SignIn({loading, setLoading}) {
   const { user, setUser,  } = useGlobalContext()
-
   const navigate = useNavigate()
 
   /**
@@ -17,7 +16,9 @@ function SignIn() {
    * @description sign in form handler
    */
   function handleSubmit(e) {
+    console.log('log in')
     e.preventDefault()
+    setLoading(true)
 
     const formData = new FormData(e.currentTarget)
     const userData = Object.fromEntries(formData)
@@ -32,6 +33,7 @@ function SignIn() {
         }
       })
       .catch(err => console.log(err.message))
+      .finally(() => setLoading(false))
   }
 
   useEffect(() => {
@@ -74,10 +76,22 @@ function SignIn() {
           > click here</span>
         </p>
         <div>
-          <input className="px-3 py-1 bg-green-300 shadow-md drop-shadow-md rounded-md text-lg font-semibold hover:scale-105 active:scale-95 transition-all duration-75 "
+          <button className="flex items-center justify-center min-w-[5.6rem] px-3 py-1 bg-green-300 shadow-md drop-shadow-md rounded-md text-lg font-semibold hover:scale-105 active:scale-95 transition-all duration-75 disabled:opacity-70"
             type="submit"
-            value='LOG IN'
-          />
+            disabled={loading}
+          >
+            {
+             loading ? 
+             <RotatingLines 
+                strokeColor="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="25"
+                visible={true}
+             /> : 
+            "LOG IN"
+            }
+          </button>
 
         </div>
       </form>

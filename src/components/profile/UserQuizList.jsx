@@ -14,6 +14,7 @@ function UserQuizList({userQuiz, setUserQuiz, fetchUserData}) {
   const [ quizModalData, setQuizModalData ] = useState({})
   const [ showDeleteModal, setShowDeleteModal ] = useState(false)
   const [ deleteQuizId, setQuizDeleteId] = useState(null)
+  const [ deleteLoading, setDeleteLoading ] = useState(false)
 
   const { user, setQuizToUpdate } = useGlobalContext()
 
@@ -138,6 +139,8 @@ function UserQuizList({userQuiz, setUserQuiz, fetchUserData}) {
         setQuizDeleteId={setQuizDeleteId}
         deleteRef={deleteRef}
         fetchUserData={fetchUserData}
+        loading={deleteLoading}
+        setLoading={setDeleteLoading}
     />}
     </>
   )

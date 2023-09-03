@@ -46,8 +46,7 @@ function SearchQuiz() {
 
 
   return (
-    <section className='mt-6 mb-12 text-sm sm:flex sm:flex-row sm:items-center '>
-    
+    <section className='mt-6 mb-12 text-sm sm:flex sm:flex-row sm:items-center '>     
       <div className='sm:mb-0 mb-4 me-4'>
         <label htmlFor='search'
         >
