@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react"
 import axios from 'axios'
 import { RotatingLines } from "react-loader-spinner"
-
+/**
+ *  handles the email submission for password reset
+ */
 export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, setTimer, loading, setLoading, }) {
   const [ showResendTimer, setShowResendTimer ] = useState(false)
   const [ showForm, setShowForm ] = useState(true)

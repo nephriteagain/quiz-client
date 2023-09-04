@@ -1,5 +1,6 @@
 import { AiOutlineCheck } from 'react-icons/ai'
 import { RxCross2 } from 'react-icons/rx'
+import PropTypes from 'prop-types'
 
 export function MatchedPassword({matchBool}) {
   if (matchBool) {
@@ -21,6 +22,14 @@ export function MatchedPassword({matchBool}) {
   }
 }
 
+MatchedPassword.propTypes = {
+  /**
+   * indicates if password is matched or not
+   */
+  matchBool: PropTypes.bool
+}
+
+
 export function CorrectLength({lengthBool}) {
   if (lengthBool) {
     return (
@@ -40,6 +49,13 @@ export function CorrectLength({lengthBool}) {
     )
   }
   
+}
+
+CorrectLength.propTypes = {
+  /**
+   * indicate if the password length is correct
+   */
+  lengthBool: PropTypes.bool
 }
 
 export function CorrrectChar({charBool}) {
@@ -63,6 +79,13 @@ export function CorrrectChar({charBool}) {
   }
 }
 
+CorrrectChar.propTypes = {
+  /**
+   *  indicates whether the password has the correct characters
+   */
+  charBool: PropTypes.bool
+}
+
 export function CorrectSymbol({symbolBool}) {
   if (!symbolBool) {
     return (
@@ -76,3 +99,9 @@ export function CorrectSymbol({symbolBool}) {
   }
 }
 
+CorrectSymbol.propTypes = {
+  /**
+   * indicates if a password contains illegal symbols
+   */
+  symbolBool: PropTypes.bool
+}

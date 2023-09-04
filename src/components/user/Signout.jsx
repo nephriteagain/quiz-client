@@ -2,9 +2,8 @@ import { RotatingLines } from 'react-loader-spinner'
 import PropTypes from 'prop-types'
 
 /**
- * Primary UI component for user interaction
+ * Log out Button
  */
-
 function SignOut({handleClick, loading}) {
   
   return (
@@ -35,7 +34,11 @@ SignOut.propTypes = {
   /**
    * function that handles user logout
    */
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  /**
+   * check the loading state of the button
+   */
+  loading: PropTypes.bool
 }
 
 SignOut.defaultProps = {

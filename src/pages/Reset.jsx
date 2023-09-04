@@ -31,7 +31,6 @@ function Reset({loading, setLoading, submitLoading, setSubmitLoading, newPassLoa
       />
       { showCodeInput && 
         <SubmitCode 
-          showCodeInput={showCodeInput} 
           setShowCodeInput={setShowCodeInput} 
           set_Id={set_Id} 
           setEmail={setEmail} 

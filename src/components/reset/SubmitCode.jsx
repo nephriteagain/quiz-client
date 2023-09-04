@@ -2,7 +2,10 @@ import { useState } from "react"
 import axios from "axios"
 import { RotatingLines } from 'react-loader-spinner'
 
-export default function SubmitCode({showCodeInput, setShowCodeInput, set_Id, setEmail, setShowPassResetForm, loading, setLoading}) {
+/**
+ * Component that handles code submission for password resets
+ */
+export default function SubmitCode({ setShowCodeInput, set_Id, setEmail, setShowPassResetForm, loading, setLoading}) {
     const [ code, setCode ] = useState('')
 
   /**
