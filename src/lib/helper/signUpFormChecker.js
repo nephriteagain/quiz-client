@@ -1,3 +1,4 @@
+
 /**
  * 
  * @param {string} password initial password given
@@ -11,6 +12,8 @@ export function matchPasswordChecker(password, confirmPass,) {
     }
     return password === confirmPass
 }
+
+
 
 /**
  * 
@@ -55,10 +58,8 @@ export function passwordCharacterChecker(password) {
  * @returns {boolean}
  * @description check if the password contains a special symbol
  */
-export function specialSymbolChecker(password) {
-  const regex = /[^a-zA-Z0-9]/g
-
-  return regex.test(password)
-
+export function specialSymbolChecker(password,) {
+  const regex = /[^a-zA-Z0-9]/g;
+  return  !regex.test(password);
 }
 
