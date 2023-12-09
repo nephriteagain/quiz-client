@@ -69,7 +69,7 @@ function Answer({data, setData, loading, setLoading}) {
 
 
   if (!showResult) return (
-    <form onSubmit={handleSubmit} className="container mt-10 mb-8 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-6 py-6 max-w-[600px] mx-auto">
+    <form onSubmit={handleSubmit} className="dark:bg-blue-950 dark:text-white container mt-10 mb-8 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-6 py-6 max-w-[600px] mx-auto">
       <h2 className="text-xl font-semibold mb-1 overflow-hidden">
         {title}
       </h2>
@@ -119,7 +119,7 @@ function Answer({data, setData, loading, setLoading}) {
       <br/>
       <button 
         type="submit" 
-        className="flex items-center justify-center min-w-[6rem] bg-green-300 px-2 py-1 rounded-md mb-5 drop-shadow-md hover:bg-green-600 hover:text-white transtion-all duration-100 disabled:opacity-70"
+        className="dark:bg-green-700 hover:dark:bg-green-600 flex items-center justify-center min-w-[6rem] bg-green-300 px-2 py-1 rounded-md mb-5 drop-shadow-md hover:bg-green-600 hover:text-white transtion-all duration-100 disabled:opacity-70"
         disabled={loading}
       >
         {
@@ -150,7 +150,7 @@ function Answer({data, setData, loading, setLoading}) {
   )
 
   if (showResult) return (
-    <div className="container mt-10 mb-5 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-4 py-2 max-w-[600px] mx-auto">
+    <div className="dark:bg-blue-950 dark:text-white container mt-10 mb-5 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-4 py-2 max-w-[600px] mx-auto">
       <h2  className="text-2xl font-semibold mb-1">
         {title}
       </h2>
@@ -174,7 +174,7 @@ function Answer({data, setData, loading, setLoading}) {
                   <div className="relative">
                   {
                   item.userAnswer === option ?
-                  <span><GrRadialSelected className="inline absolute left-10 bottom-1/2 translate-y-1/2"/> 
+                  <span><GrRadialSelected className=" inline absolute left-10 bottom-1/2 translate-y-1/2"/> 
                     <span className="ms-16">
                       <span className="opacity-75">{lowerRoman[index]}. </span>
                       {option}
@@ -196,15 +196,13 @@ function Answer({data, setData, loading, setLoading}) {
             </ol>            
               {!item.userCorrect && 
               <p 
-                style={!item.userCorrect ? {color: 'blue'}: {}}
-                className="text-sm mt-2"
+                className={`text-sm mt-2 ${!item.userCorrect ? 'text-yellow-600 dark:text-yellow-300' : ''}`}
               >
                 your answer: {item.userAnswer}
               </p>
               }          
             <p 
-              style={item.userCorrect? {color: 'green'} : {color: 'red'}}
-              className="italic text-sm mt-2 mb-6"
+              className={`italic text-sm mt-2 mb-6 ${item.userCorrect ? 'text-green-600 dark:text-green-300' : 'text-red-600 dark:text-red-300'}`}
             >
               correct answer: {item.correctAnswer}
             </p>
@@ -218,7 +216,7 @@ function Answer({data, setData, loading, setLoading}) {
       </h4>
       <button 
         onClick={handleRetry}
-        className="bg-red-300 px-2 py-1 rounded-lg shadow-md mb-4 hover:bg-red-600 hover:text-white hover:border-black hover:drop-shadow-md hover:scale-105 transition-all duration-100"
+        className="dark:bg-red-500 bg-red-300 px-2 py-1 rounded-lg shadow-md mb-4 hover:bg-red-600 hover:text-white hover:border-black hover:drop-shadow-md hover:scale-105 transition-all duration-100"
       >
         Retry Quiz
       </button><br/>

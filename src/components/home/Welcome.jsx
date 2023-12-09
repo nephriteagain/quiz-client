@@ -24,12 +24,12 @@ function Welcome() {
     <div className="absolute top-4 left-4">
       <span>
       <Link to={`/profile/${user.id}`}
-        className="me-4 px-3 py-1 bg-green-300 rounded-md drop-shadow-md shadow-md hover:bg-indigo-200 transition-all duration-100"
+        className="me-4 px-3 py-1 bg-green-300 dark:bg-green-700 dark:text-white rounded-md drop-shadow-md shadow-md hover:bg-indigo-200 dark:hover:bg-indigo-600 transition-all duration-150"
         >
         Profile
       </Link>
       </span>
-      <p className="inline font-semibold">
+      <p className="dark:text-white inline font-semibold">
         {`Welcome, ${firstNamePascal} ${lastNamePascal}!`}
       </p>
 

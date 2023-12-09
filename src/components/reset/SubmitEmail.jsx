@@ -79,10 +79,10 @@ export default function SubmitEmail({showCodeInput, setShowCodeInput, timer, set
           your email
         </label>
         <input type="email" name='email' required
-          className="block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"
+          className="dark:text-black block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"
           />
         <button type="submit" 
-          className="flex items-center justify-center min-w-[9rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
+          className="flex items-center justify-center min-w-[9rem] bg-green-300 dark:bg-green-700 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
           disabled={loading}
           >
             {

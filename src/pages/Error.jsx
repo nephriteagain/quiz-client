@@ -11,7 +11,7 @@ function Error() {
   },[])
 
   return (
-    <div>
+    <div className="dark:bg-[#22092C] w-screen h-screen text-5xl flex items-center justify-center">
       Go Back!!!
     </div>
   )

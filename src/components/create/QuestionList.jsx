@@ -48,10 +48,10 @@ function QuestionList({formData, setFormData}) {
 
 
   return (
-    <div className="md:basis-1/2 mt-16 bg-stone-200 rounded-xl drop-shadow-xl shadow-lg px-4 py-2 overflow-x-hidden"
+    <div className="dark:bg-blue-950 md:basis-1/2 mt-16 bg-stone-200 rounded-xl drop-shadow-xl shadow-lg px-4 py-2 overflow-x-hidden"
       ref={documentRef}
     >
-      <h1 className="font-bold mb-8 mt-2 text-3xl text-center">
+      <h1 className=" font-bold mb-8 mt-2 text-3xl text-center">
         {`Preview`}
       </h1>
       <h2 className="text-2xl font-semibold mb-1 mt-4">
@@ -61,14 +61,14 @@ function QuestionList({formData, setFormData}) {
         {createdBy}
       </h3>
       <ol 
-        className="list-decimal list-inside [&>*:nth-child(odd)]:bg-slate-200 [&>*:nth-child(even)]:bg-indigo-100 mt-10 h-[600px] overflow-y-auto"        
+        className="list-decimal list-inside [&>*:nth-child(odd)]:bg-slate-200 [&>*:nth-child(even)]:bg-indigo-100 dark:[&>*:nth-child(odd)]:dark:bg-[#22092C] dark:[&>*:nth-child(even)]:dark:bg-[#22092C] mt-10 h-[600px] overflow-y-auto"        
       >
         {questions?.length && questions.map((question, index) => {
           const {questionText, options, correctAnswer} = question
           return (
             <li 
               key={index}
-              className="mb-4 ms-1 px-4 py-2 rounded-xl relative drop-shadow-lg shadow-lg group"
+              className="  mb-4 ms-1 px-4 py-2 rounded-xl relative drop-shadow-lg shadow-lg group"
             >
               <h2 className="mb-2 font-semibold inline">
                 {questionText}

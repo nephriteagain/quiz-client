@@ -89,7 +89,7 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
           new password
         </label>
         <input type="password" name="password" value={password} required
-          className="block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"
+          className="dark:text-black block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
         <label htmlFor="newPassword"
@@ -98,11 +98,11 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
           confirm new password
         </label>
         <input type="password" name="newPassword" value={confirmPass} required
-          className="block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"          
+          className="dark:text-black block mt-2 mb-4 min-w-[80%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-2 py-1 text-sm"          
           onChange={(e) => setConfirmPass(e.currentTarget.value)}
         />
         <button type="submit" 
-          className="flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity:70"
+          className="dark:bg-green-700 flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity:70"
           disabled={loading}
         >
           {

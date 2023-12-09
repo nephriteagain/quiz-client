@@ -50,10 +50,10 @@ export default function SubmitCode({ setShowCodeInput, set_Id, setEmail, setShow
           name="code" 
           required value={code} 
           onChange={(e) => setCode(e.currentTarget.value)}
-          className=' block mt-2 mb-4 min-w-[50%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-4 py-1 text-sm'
+          className='dark:text-black block mt-2 mb-4 min-w-[50%] shadow-inner shadow-stone-300 drop-shadow-md rounded-md bg-orange-50 focus:bg-orange-100 px-4 py-1 text-sm'
         />
         <button type="submit"
-          className="flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
+          className="dark:bg-green-700 flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
           disabled={loading}
         >
           {

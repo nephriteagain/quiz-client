@@ -13,7 +13,7 @@ function QuizModal({quizModalData, setQuizModalData, setShowQuizModal}) {
     }
 
     return (
-    <div className="absolute lg:w-[60%] md:w-[70%] sm:w-[80%] w-[90%] h-[80vh] z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-stone-200 rounded-xl overflow-auto px-8 py-4 drop-shadow-xl shadow-xl">
+    <div className="dark:bg-blue-950 dark:text-white absolute lg:w-[60%] md:w-[70%] sm:w-[80%] w-[90%] h-[80vh] z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-stone-200 rounded-xl overflow-auto px-8 py-4 drop-shadow-xl shadow-xl">
       <div>
         <p className="text-xl font-bold">
           {title}
@@ -46,7 +46,7 @@ function QuizModal({quizModalData, setQuizModalData, setShowQuizModal}) {
         })}
       </div>
       <AiFillCloseCircle 
-        className='absolute top-2 right-2 text-3xl text-red-700 drop-shadow-md hover:scale-110 hover:text-red-800 transition-all duration-300 cursor-pointer'
+        className='dark:bg-white dark:rounded-full absolute top-2 right-2 text-3xl text-red-700 drop-shadow-md hover:scale-110 hover:text-red-800 transition-all duration-300 cursor-pointer'
         onClick={closeModal}
       />
     </div>

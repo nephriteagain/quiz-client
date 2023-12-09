@@ -2,7 +2,7 @@ import { dummyAnswerOrOptionArr } from "../../lib/data/dummyData"
 
 function AnswerLoading() {
   return (
-    <div className="container mt-10 mb-5 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-6  py-4 max-w-[600px] mx-auto">
+    <div className="dark:bg-blue-950 container mt-10 mb-5 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-6  py-4 max-w-[600px] mx-auto">
       <h2  className="w-2/6 h-10 bg-slate-400 rounded-lg mt-6 mb-4">
         
       </h2>

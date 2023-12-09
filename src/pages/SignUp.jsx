@@ -23,6 +23,7 @@ function SignUp({loading, setLoading}) {
   const [ digitBool, setDigitBool ] = useState(false)
   const [ symbolBool, setSymbolBool ] = useState(false)
   const [ hasNoSpecialSymbolBool, sethasNoSpecialSymbolBool ] = useState(false)
+  const [ validForm, setValidForm ] = useState(false)
 
   const { user } = useGlobalContext()
 
@@ -61,11 +62,16 @@ function SignUp({loading, setLoading}) {
   }
 
   useEffect(() => {
+    setSamePassword(matchPasswordChecker(password, confirmPass))
+    setDigitBool(passwordLengthChecker(password))
+    setSymbolBool(passwordCharacterChecker(password ))
+    sethasNoSpecialSymbolBool(specialSymbolChecker(password))
 
-    matchPasswordChecker(password, confirmPass, setSamePassword)
-    passwordLengthChecker(password, setDigitBool)
-    passwordCharacterChecker(password, setSymbolBool)
-    specialSymbolChecker(password, sethasNoSpecialSymbolBool)
+    if (samePassword && digitBool && symbolBool && hasNoSpecialSymbolBool) {
+      setValidForm(true)
+    } else {
+      setValidForm(false)
+    }
 
   }, [password, confirmPass])
 
@@ -76,7 +82,7 @@ function SignUp({loading, setLoading}) {
   }, [user])
 
   return (
-    <div className="mx-auto max-w-[500px]">
+    <div className="dark:text-white mx-auto max-w-[500px]">
         <h1 className="text-3xl font-bold mt-10 mb-12">
           Create a New Account
         </h1>
@@ -87,7 +93,7 @@ function SignUp({loading, setLoading}) {
               Email
             </label>
             <input type="email" name="email" required 
-              className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
+              className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
             />
           </div>
           <div>
@@ -95,7 +101,7 @@ function SignUp({loading, setLoading}) {
               First Name
             </label>
             <input type="text" name="firstName" required 
-              className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
+              className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
             />
           </div>
           <div>
@@ -103,7 +109,7 @@ function SignUp({loading, setLoading}) {
               Last Name
             </label>
             <input type="text" name="lastName" required 
-              className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] focus:bg-blue-200"
+              className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] focus:bg-blue-200"
             />
           </div>
           <div className="relative">
@@ -111,7 +117,7 @@ function SignUp({loading, setLoading}) {
               Password
             </label>
             <input 
-              className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] focus:bg-blue-200 relative"
+              className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] focus:bg-blue-200 relative"
               type="password" 
               name="password" 
               required
@@ -123,7 +129,7 @@ function SignUp({loading, setLoading}) {
               Confirm Password
             </label>
             <input 
-              className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] focus:bg-blue-200"
+              className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] focus:bg-blue-200"
               type="password" 
               name="confirmPass" 
               required
@@ -182,8 +188,8 @@ function SignUp({loading, setLoading}) {
           }
           <div>
             <button type="submit"
-              className="px-2 py-1 bg-green-300 rounded-lg drop-shadow-md hover:scale-110 mt-4 disabled:opacity-70" 
-              disabled={loading}
+              className="dark:bg-green-700 px-2 py-1 bg-green-300 rounded-lg drop-shadow-md hover:scale-110 mt-4 disabled:opacity-70 transition-all duration-150" 
+              disabled={loading && validForm}
             >
               {
               loading ? 

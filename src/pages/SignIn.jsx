@@ -44,7 +44,7 @@ function SignIn({loading, setLoading}) {
   
 
   return (
-    <div className="mx-auto max-w-[500px]">
+    <div className="mx-auto max-w-[500px] dark:text-white">
       <h1 className="text-3xl font-bold mt-20 mb-16">
         Login
       </h1>
@@ -53,7 +53,7 @@ function SignIn({loading, setLoading}) {
           <label htmlFor="email" className="font-semibold text-md">
             Email
           </label>
-          <input className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
+          <input className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
             type="email" 
             name='email' 
             required
@@ -63,7 +63,7 @@ function SignIn({loading, setLoading}) {
         <label htmlFor="password" className="font-semibold text-md">
           Password
         </label>
-        <input className="block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
+        <input className="dark:text-black block mt-2 mb-4 shadow-md text-md px-2 py-1 rounded-md w-[80%] max-w-[400px] min-w-[250px] focus:bg-blue-200"
           type="password" 
           name="password" 
           required 
@@ -71,12 +71,12 @@ function SignIn({loading, setLoading}) {
         </div>
         <p className="text-sm mb-6">
           <span className="opacity-80">forgot password?</span>
-          <span className="text-blue-800 cursor-pointer"
+          <span className="text-blue-800 dark:text-blue-300 cursor-pointer"
             onClick={() => navigate('/user/reset')}
           > click here</span>
         </p>
         <div>
-          <button className="flex items-center justify-center min-w-[5.6rem] px-3 py-1 bg-green-300 shadow-md drop-shadow-md rounded-md text-lg font-semibold hover:scale-105 active:scale-95 transition-all duration-75 disabled:opacity-70"
+          <button className="flex items-center justify-center min-w-[5.6rem] px-3 py-1 bg-green-300 dark:bg-green-800 shadow-md drop-shadow-md rounded-md text-lg font-semibold hover:scale-105 active:scale-95 transition-all duration-75 disabled:opacity-70"
             type="submit"
             disabled={loading}
           >

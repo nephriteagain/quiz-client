@@ -40,7 +40,7 @@ function Profile() {
     <div className="mt-[15%]">      
       <UserQuizList userQuiz={userQuiz} setUserQuiz={setUserQuiz} fetchUserData={fetchUserData}/>
 
-      <div className='text-xl bg-yellow-100 px-2 py-1 rounded-lg shadow-md drop-shadow-md w-fit mx-auto mt-8 mb-4 hover:scale-110 active:scale-95 transition-all duration-100'>
+      <div className='dark:bg-yellow-500 text-xl bg-yellow-100 px-2 py-1 rounded-lg shadow-md drop-shadow-md w-fit mx-auto mt-8 mb-4 hover:scale-110 active:scale-95 transition-all duration-100'>
         <Link to="/"
         >
           Back To Home

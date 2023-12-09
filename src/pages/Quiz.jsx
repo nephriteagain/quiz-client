@@ -43,7 +43,7 @@ function Quiz() {
     <Answer data={data} setData={setData} loading={answerLoading} setLoading={setAnswerLoading}/>
     }
     
-    <div className='text-xl bg-yellow-100 px-2 py-1 shadow-md drop-shadow-md rounded-lg w-fit mx-auto mb-4 hover:scale-110 active:scale-95 transition-all duration-100'>
+    <div className='dark:bg-yellow-600 dark:text-white text-xl bg-yellow-100 px-2 py-1 shadow-md drop-shadow-md rounded-lg w-fit mx-auto mb-4 hover:scale-110 active:scale-95 transition-all duration-100'>
         <Link to="/"
         >
           Back To Home

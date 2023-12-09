@@ -15,7 +15,7 @@ function Reset({loading, setLoading, submitLoading, setSubmitLoading, newPassLoa
   const { timer, setTimer, showPassResetForm, setShowPassResetForm } = useGlobalContext()
 
   return (
-    <div className="max-w-[400px] min-w-[250px] h-[300px] bg-stone-50 mx-auto mt-20 rounded-xl px-4 py-4 shadow-md drop-shadow-lg">
+    <div className="max-w-[400px] min-w-[250px] h-[300px] bg-stone-50 dark:bg-blue-950 dark:text-white mx-auto mt-20 rounded-xl px-4 py-4 shadow-md drop-shadow-lg">
       <h1 className='mb-8 mt-4 font-bold text-xl'>
         Reset Password
       </h1>

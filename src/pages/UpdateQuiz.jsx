@@ -122,13 +122,13 @@ export default function UpdateQuiz({loading, setLoading}) {
 
 
   return (
-    <div className="mt-16 w-[90%] max-w-[600px] mx-auto bg-neutral-200 px-8 py-8 rounded-xl shadow-2xl drop-shadow-lg">
+    <div className="dark:bg-blue-950 dark:text-white mt-16 w-[90%] max-w-[600px] mx-auto bg-neutral-200 px-8 py-8 rounded-xl shadow-2xl drop-shadow-lg">
       <form onSubmit={submitUpdate}>
         <div className=" mb-6">
           <label htmlFor="title" className="font-semibold text-lg">
             Title  
           </label>      
-          <input className="block w-[80%] px-2 text-xl font-bold mt-2 rounded-md shadow-md bg-blue-100"
+          <input className="dark:text-black block w-[80%] px-2 text-xl font-bold mt-2 rounded-md shadow-md bg-blue-100"
             type="text"
             name="title"
             value={title}
@@ -142,14 +142,14 @@ export default function UpdateQuiz({loading, setLoading}) {
           {questions.map((q, index) => {
             const {questionText, options, correctAnswer } = q
             return (
-              <div key={index} className="mb-12 bg-orange-100 px-6 py-6 rounded-xl shadow-xl relative group">                
-                <div className="absolute top-[-0.75rem] left-[-0.75rem] bg-green-300 w-8 h-8 flex items-center justify-center rounded-[50%] shadow-md drop-shadow-md">
+              <div key={index} className="dark:bg-[#22092C] mb-12 bg-orange-100 px-6 py-6 rounded-xl shadow-xl relative group">                
+                <div className="absolute top-[-0.75rem] left-[-0.75rem] bg-green-300 dark:bg-green-700  w-8 h-8 flex items-center justify-center rounded-[50%] shadow-md drop-shadow-md">
                   <p className="font-semibold">
                     {index + 1}
                   </p>
                 </div>
                 <div>                
-                <textarea className="w-[80%] px-2 rounded-md mb-4 shadow-md bg-blue-100"
+                <textarea className="dark:text-black w-[80%] px-2 rounded-md mb-4 shadow-md bg-blue-100"
                   type="text"
                   value={questionText}
                   rows='2'
@@ -172,7 +172,7 @@ export default function UpdateQuiz({loading, setLoading}) {
                     return (
                       <div  key={ind} className="relative">
                         
-                        <textarea className="w-[80%] px-2 py-1 rounded-md mb-2 me-2 text-sm shadow-md bg-blue-100"
+                        <textarea className="dark:text-black w-[80%] px-2 py-1 rounded-md mb-2 me-2 text-sm shadow-md bg-blue-100"
                         type='text'
                         value={op}
                         rows='1'
@@ -203,17 +203,19 @@ export default function UpdateQuiz({loading, setLoading}) {
                   })}
                 </div>
                 <div>
-                  <div className="text-sm rounded-md bg-green-200 px-2 py-1 shadow-md opacity-80 hover:scale-105 active:scale-95 transition-all duration-100 cursor-pointer w-fit"
+                  <div className="dark:bg-green-700 text-sm rounded-md bg-green-200 px-2 py-1 shadow-md opacity-80 hover:scale-105 active:scale-95 transition-all duration-100 cursor-pointer w-fit"
                     onClick={() => addNewOption(index)}
+                    role="button"
+                    tabIndex={0}
                   >
                     add new option
                   </div>
                 </div>
                 <div>
-                  <p className="mt-8 ms-1  text-sm font-light ">
+                  <p className=" mt-8 ms-1  text-sm font-light ">
                     Answer
                   </p>
-                  <textarea className="w-[80%] px-2 rounded-md mt-2 shadow-md bg-blue-100"
+                  <textarea className="dark:text-black w-[80%] px-2 rounded-md mt-2 shadow-md bg-blue-100"
                     type='text'
                     value={correctAnswer}
                     rows='1'
@@ -252,7 +254,7 @@ export default function UpdateQuiz({loading, setLoading}) {
           })}
         </div>
         <div onClick={addNewQuestion}
-          className="-mt-6 ms-6 text-lg w-fit px-4 py-1 bg-indigo-300 rounded-lg mb-8 shadow-lg drop-shadow-lg hover:bg-indigo-700 hover:text-white hover:scale-110 active:scale-90 transition-all duration-150 cursor-pointer"
+          className="dark:bg-indigo-500 mt-6 ms-6 text-lg w-fit px-4 py-1 bg-indigo-300 rounded-lg mb-8 shadow-lg drop-shadow-lg hover:bg-indigo-700 hover:text-white hover:scale-110 active:scale-90 transition-all duration-150 cursor-pointer"
         >
           Add New Question
         </div>
