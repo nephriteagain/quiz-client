@@ -64,7 +64,7 @@ export default function QuizList({quizList}) {
       quizList.map((quiz, index) => {
         const { title, createdBy, _id, votes } = quiz
         return (
-          <div key={index} className='container drop-shadow-xl shadow-xl bg-blue-100 px-2 py-2 rounded-xl hover:-translate-y-2 transition-all duration-100 overflow-hidden max-w-[300px] mx-auto aspect-[1.6/1]'>
+          <div key={index} className='container drop-shadow-xl shadow-xl dark:bg-blue-950 dark:text-white bg-blue-100 px-2 py-2 rounded-xl hover:-translate-y-2 transition-all duration-100 overflow-hidden max-w-[300px] mx-auto aspect-[1.6/1]'>
             <h3 className='text-xl font-semibold mb-1 whitespace-nowrap quiz-title'>
               {title}
             </h3>
@@ -72,7 +72,7 @@ export default function QuizList({quizList}) {
                 {createdBy}
             </p>
             <Link to={`/quiz/${_id}`}>
-            <p className='w-fit px-2 py-1 rounded-md bg-green-400 hover:bg-green-700 hover:text-white shadow-md drop-shadow-md transition-all duration-75'>
+            <p className='w-fit px-2 py-1 rounded-md dark:bg-green-800 dark:text-white bg-green-400 hover:bg-green-700 hover:text-white shadow-md drop-shadow-md transition-all duration-75'>
               Answer Quiz!
             </p>
             </Link>
@@ -85,10 +85,10 @@ export default function QuizList({quizList}) {
       }) :
 
       <div className='mt-4'>
-        <p className='text-xl font-bold mb-2'>
+        <p className='text-xl font-bold mb-2 dark:text-white'>
           No More Results...  
         </p>
-        <button className='bg-orange-200 rounded-md px-2 py-1 drop-shadow-md shadow-md hover:scale-105 active:scale-95 transition-all duration-100'
+        <button className='bg-orange-200 dark:bg-orange-800 dark:text-white rounded-md px-2 py-1 drop-shadow-md shadow-md hover:scale-105 active:scale-95 transition-all duration-100'
           onClick={backToPageOne}
         >
           Back to Page 1

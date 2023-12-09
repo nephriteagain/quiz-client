@@ -9,7 +9,7 @@ function SignOut({handleClick, loading}) {
   return (
     <div>
       <button onClick={handleClick}
-        className='text-md px-3 py-1 bg-blue-100  rounded-xl text-stone-500 shadow-md drop-shadow-md hover:scale-110 active:scale-100 transition-all duration-150 disabled:opacity-70'
+        className='text-md px-3 py-1 bg-blue-100 dark:bg-blue-700 dark:text-white  rounded-xl text-stone-500 shadow-md drop-shadow-md hover:scale-110 active:scale-100 transition-all duration-150 disabled:opacity-70'
         disabled={loading}
       >
         {
