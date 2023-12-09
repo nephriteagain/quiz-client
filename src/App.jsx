@@ -1,4 +1,5 @@
-import {BrowserRouter as Router, Routes, Route, useParams} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { useState } from 'react'
 
 import { useGlobalContext } from './context/UserContext'
 
@@ -15,12 +16,14 @@ import Error from './pages/Error'
 
 
 import './App.css'
-import { useState } from 'react'
+
+
+
+
 
 function App() {
 
   const { user, quizList, setQuizList } = useGlobalContext()
-  let { quizId, profileId, editQuizId } = useParams()
   const [ signInLoading, setSignInLoading ] = useState(false)  
   const [ sendEmailLoading, setSendEmailLoading ] = useState(false)
   const [ submitCodeLoading , setSubmitCodeLoading ] = useState(false)
@@ -32,7 +35,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path='/' element={<Home quizList={quizList} setQuizList={setQuizList}/>}/>
+        <Route exact path='/' element={<Home quizList={quizList} setQuizList={setQuizList}/>} />
         { user && <Route path='/create' element={<Create />} /> }
         <Route path='/quiz/:quizId' element={<Quiz quizList={quizList}/>}/>
         <Route path='/user/signin' element={<SignIn loading={signInLoading} setLoading={setSignInLoading} />} />
