@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { Toaster } from '../components/shadcn/ui/toaster'
 
 const GlobalContext = createContext()
 
@@ -126,13 +127,13 @@ export const GlobalProvider = ({children}) => {
         showLoadingComponent,
         ascending,
         setAscending,
-
         timer,
         setTimer,
         showPassResetForm,
         setShowPassResetForm
       }}
     >
+      <Toaster />
       {children}
     </GlobalContext.Provider>
   )

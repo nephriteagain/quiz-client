@@ -1,14 +1,15 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useRef, useLayoutEffect} from 'react'
 import {AiOutlineMinusCircle} from 'react-icons/ai'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../../context/UserContext'
+import { useToast } from '../shadcn/ui/use-toast'
 
-function NewQuiz({formData, setFormData, setShowSubmitModal}) {
+
+function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef}) {
   const [ optionList, setOptionList ] = useState(["", "", ""])
   const { user } = useGlobalContext()
 
-  const navigate = useNavigate()
+  const questionRef = useRef(null)
+  const { toast } = useToast()
 
   /**
    * 
@@ -34,7 +35,12 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
     const isAnswerAvailable = optionValue.some((option) => answer.value === option)
 
     if (!isAnswerAvailable) {
-      return alert('answer has no match on options')
+      return toast({
+        title:"error",
+        description: 'answer has no match on options',
+        duration: 3000,
+        variant: 'desctructive'
+      })
     }
 
     let sameAnswertoOptionCount = 0
@@ -44,7 +50,12 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
       }
     })
     if (sameAnswertoOptionCount > 1) {
-      return alert('answer should only match one option')
+      return toast({
+        title:"error",
+        description: 'answer should only match one option',
+        duration: 3000,
+        variant: 'desctructive'
+      })
     }
 
     setFormData({
@@ -74,6 +85,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
 
     question.value = ''
     answer.value = ''
+    questionRef.current.focus()
     setOptionList(['', '', ''])
 
   }
@@ -123,11 +135,14 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
   }
 
 
+  useLayoutEffect(() => {
+    titleRef.current.focus()
+  }, [])
 
   return (
     <div className='md:basis-1/2 mt-16'>
     <div>
-      <form onSubmit={createQuestion}>
+      <form onSubmit={createQuestion} ref={formRef}>
         <h3 className="5 text-3xl font-bold mb-5">Create a New Quiz</h3>
         <div className='mb-12'>
           <label 
@@ -142,6 +157,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
             name='title' 
             className='dark:text-black title border-2 border-black rounded-md ps-2 bg-green-300 focus:bg-green-400 w-[90%]'
             required
+            ref={titleRef}
           />
         </div>
 
@@ -157,6 +173,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal}) {
           </label>
           <br/>
           <textarea 
+            ref={questionRef}
             type="text" 
             name='question' 
             className='dark:text-black question border-2 border-black rounded-md ps-2 bg-green-300 focus:bg-green-400 w-[90%]'

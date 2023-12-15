@@ -9,12 +9,15 @@ import SubmitModal from '../components/create/SubmitModal'
 
 
 function Create() {
-  const pageRef = useRef()
+  const pageRef = useRef(null)
+  const titleRef = useRef(null)
+  const formRef = useRef(null)
 
   const [formData, setFormData] = useState({})
   const [ showSubmitModal, setShowSubmitModal ] = useState(false)
   const [ bgModalHeight , setBgModalHeight ]  = useState(window.innerHeight)
   const [ loadingQuiz, setLoadingQuiz ] = useState(false)
+  
 
 useEffect(() => {
   window.onresize = () => {
@@ -37,6 +40,8 @@ useEffect(() => {
         bgModalHeight={bgModalHeight}
         loading={loadingQuiz}
         setLoading={setLoadingQuiz}
+        titleRef={titleRef}
+        formRef={formRef}
       />
       }
       <div className='container md:flex md:flex-row'>
@@ -44,6 +49,8 @@ useEffect(() => {
           formData={formData} 
           setFormData={setFormData}
           setShowSubmitModal={setShowSubmitModal}
+          titleRef={titleRef}
+          formRef={formRef}
         />
         <QuestionList 
           formData={formData} 

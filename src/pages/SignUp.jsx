@@ -13,6 +13,8 @@ import {
   specialSymbolChecker
 } from '../lib/helper/signUpFormChecker'
 
+import { useToast } from "../components/shadcn/ui/use-toast"
+
 
 
 
@@ -26,6 +28,7 @@ function SignUp({loading, setLoading}) {
   const [ validForm, setValidForm ] = useState(false)
 
   const { user } = useGlobalContext()
+  const { toast } = useToast()
 
   const navigate = useNavigate()
 
@@ -54,7 +57,12 @@ function SignUp({loading, setLoading}) {
           navigate('/user/signin')
         }
         else if (res.data?.code === 11000) {
-          alert('user email already exist')
+          toast({
+            title: 'error',
+            description: 'user email already exist',
+            duration: 3000,
+            variant: 'destructive',            
+          })
         }
       })
       .catch((err) => console.log(err.message))
