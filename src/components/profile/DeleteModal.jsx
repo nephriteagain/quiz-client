@@ -5,12 +5,13 @@ import axios from 'axios'
 import { BsCheck2 } from 'react-icons/bs'
 import { RxCross2 } from 'react-icons/rx'
 import { RotatingLines } from 'react-loader-spinner'
-
+import { useToast } from '../shadcn/ui/use-toast'
 
 
 export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef, setQuizDeleteId, showDeleteModal, fetchUserData, loading, setLoading}) {
 
   const modalRef = useRef()
+  const { toast } = useToast()
   
   /**
    * 
@@ -22,9 +23,20 @@ export default function DeleteModal({setShowDeleteModal, deleteQuizId, deleteRef
     await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/delete`, {id}, {withCredentials: true})
       .then(async (res) => {
         await fetchUserData()
+        toast({
+          title: 'deleted',
+          description: 'quiz deleted successfully',
+          duration: 3000
+        })
       })
       .catch((err) => {
         console.log(err)
+        toast({
+          title: 'error',
+          description: 'something went wrong',
+          duration: 3000,
+          variant: 'destructive'
+        })
       })
       .finally(() => {
         setShowDeleteModal(false)

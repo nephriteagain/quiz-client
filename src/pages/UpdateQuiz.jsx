@@ -9,6 +9,7 @@ import { MdDelete} from 'react-icons/md'
 import { TiDelete } from 'react-icons/ti'
 import { BsCheckCircleFill} from 'react-icons/bs'
 import { RotatingLines } from "react-loader-spinner"
+import { useToast } from "../components/shadcn/ui/use-toast"
 
 
 export default function UpdateQuiz({loading, setLoading}) {
@@ -20,6 +21,7 @@ export default function UpdateQuiz({loading, setLoading}) {
   const [ hideDeleteButton, setHideDeleteButton ] = useState(false)
 
   const navigate = useNavigate()
+  const { toast } = useToast()
 
   /**
    * 
@@ -34,11 +36,25 @@ export default function UpdateQuiz({loading, setLoading}) {
     async function fetchUpdatedData() {
       await axios.post(`${import.meta.env.PROD ? import.meta.env.VITE_PROD : import.meta.env.VITE_DEV}/api/v1/update/${user.id}`, toSubmit, {withCredentials: true})
         .then((res) => {
+          
           navigate('/profile/:profileId')
           setQuizToUpdate(res.data)
           fetchUserData()
+          toast({
+            title: 'success',
+            description: 'quiz updated successfully',
+            duration: 3000,
+          })
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          toast({
+            title: 'error',
+            description: 'something went wrong',
+            duration: 3000,
+            variant: 'desctructive'
+          })
+          console.log(err)
+        })
         .finally(() => setLoading(false))
     }
 

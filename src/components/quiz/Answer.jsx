@@ -7,6 +7,7 @@ import {GrRadialSelected, GrRadial} from 'react-icons/gr'
 
 import lowerRoman from "../../lib/data/lowerRoman"
 import { RotatingLines } from "react-loader-spinner"
+import { useToast } from "../shadcn/ui/use-toast"
 
 // split this code
 function Answer({data, setData, loading, setLoading}) {
@@ -15,7 +16,7 @@ function Answer({data, setData, loading, setLoading}) {
   const [ result, setResult ] = useState({})
   const [ score, setScore ] = useState({score: 0, total: 0})
   
-  
+  const { toast  }   = useToast()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -53,11 +54,19 @@ function Answer({data, setData, loading, setLoading}) {
         setResult(response.data)
         setShowResult(true)
       })
-      .catch((err) => console.log(err, 'error'))
+      .catch((err) => {
+        console.log(err, 'error')
+        toast({
+          title: 'error',
+          description: 'something went wrong',
+          duration: 3000,
+          variant: 'destructive'
+
+        })
+      })
       .finally(() => setLoading(false))
       
     
-    e.currentTarget.reset()
   }
 
   function handleRetry() {
