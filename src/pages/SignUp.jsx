@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { useNavigate} from 'react-router-dom'
+import { useNavigate, useNavigation} from 'react-router-dom'
 
 import { AiOutlineCheck } from 'react-icons/ai'
 import { RxCross2 } from 'react-icons/rx'
@@ -91,7 +91,7 @@ function SignUp({loading, setLoading}) {
 
   return (
     <div className="dark:text-white mx-auto max-w-[500px]">
-        <h1 className="text-3xl font-bold mt-10 mb-12">
+        <h1 className="text-3xl font-bold mt-16 mb-12">
           Create a New Account
         </h1>
         <form onSubmit={handleSubmit}           

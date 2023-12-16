@@ -18,7 +18,7 @@ export default function Switch() {
 
 
     return (
-        <div className="flex flex-col justify-center text-3xl">
+        <div className="ms-auto flex flex-col justify-center text-3xl">
             <button onClick={() => setMode(m => m === 'light' ? 'dark' : 'light')}>
                 {
                 mode === 'light' ?

@@ -78,7 +78,7 @@ function Answer({data, setData, loading, setLoading}) {
 
 
   if (!showResult) return (
-    <form onSubmit={handleSubmit} className="dark:bg-blue-950 dark:text-white container mt-10 mb-8 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-6 py-6 max-w-[600px] mx-auto">
+    <form onSubmit={handleSubmit} className="dark:bg-blue-950 dark:text-white container mt-16 mb-8 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-6 py-6 max-w-[600px] mx-auto">
       <h2 className="text-xl font-semibold mb-1 overflow-hidden">
         {title}
       </h2>
@@ -159,7 +159,7 @@ function Answer({data, setData, loading, setLoading}) {
   )
 
   if (showResult) return (
-    <div className="dark:bg-blue-950 dark:text-white container mt-10 mb-5 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-4 py-2 max-w-[600px] mx-auto">
+    <div className="dark:bg-blue-950 dark:text-white container mt-16 mb-5 bg-stone-200 rounded-xl drop-shadow-xl shadow-xl px-4 py-2 max-w-[600px] mx-auto">
       <h2  className="text-2xl font-semibold mb-1">
         {title}
       </h2>

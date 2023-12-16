@@ -13,7 +13,7 @@ import Profile from './pages/Profile'
 import UpdateQuiz from './pages/UpdateQuiz'
 import Reset from './pages/Reset'
 import Error from './pages/Error'
-
+import Root from './pages/Root'
 
 import './App.css'
 
@@ -35,7 +35,8 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path='/' element={<Home quizList={quizList} setQuizList={setQuizList}/>} />
+        <Route exact path='/' element={<Root />} >
+          <Route index element={<Home quizList={quizList} setQuizList={setQuizList}/>} />
         { user && <Route path='/create' element={<Create />} /> }
         <Route path='/quiz/:quizId' element={<Quiz quizList={quizList}/>}/>
         <Route path='/user/signin' element={<SignIn loading={signInLoading} setLoading={setSignInLoading} />} />
@@ -55,6 +56,7 @@ function App() {
         { user && <Route path='/profile/:profileId' element={<Profile />} /> }
         { user && <Route path='/profile/:profileId/update/:editQuizId' element={<UpdateQuiz loading={updateLoading} setLoading={setUpdateLoading} />} />}
         <Route path='*' element={<Error />} />
+        </Route >
       </Routes>
     </Router>
     <Version />

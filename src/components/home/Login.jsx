@@ -54,7 +54,7 @@ function Login() {
 
 
   if (showLogin) return (
-    <section className="absolute top-4 right-4 flex flex-row gap-6">
+    <>
       <Switch />
       <button onClick={handleSignIn}
         className=" px-2 py-1  bg-blue-200 dark:bg-blue-700 shadow-md dark:text-white rounded-md text-lg drop-shadow-md hover:scale-110 hover:bg-blue-300 active:scale-95 transition-all duration-75"
@@ -66,18 +66,18 @@ function Login() {
       >
         Sign Up
       </button> 
-    </section>
+    </>
   )
 
   else if (!showLogin) return (
-    <section className="absolute top-4 right-4 flex flex-row gap-6">
+    <>
         <Switch />
         <SignOut 
           className='text-md px-3 py-1 bg-blue-100  rounded-xl text-stone-500 shadow-md drop-shadow-md hover:scale-110 active:scale-100 transition-all duration-150'
           handleClick={logOut}
           loading={loading}
         />
-    </section>
+    </>
   )
 
 }

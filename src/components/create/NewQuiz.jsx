@@ -155,7 +155,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
           <input 
             type="text" 
             name='title' 
-            className='dark:text-black title border-2 border-black rounded-md ps-2 bg-green-300 focus:bg-green-400 w-[90%]'
+            className='dark:bg-blue-950 dark:focus:bg-blue-800 title  shadow-md rounded-md ps-2 bg-blue-200 focus:bg-blue-300 p-2 w-[90%] text-xl font-semibold transition-all duration-150'
             required
             ref={titleRef}
           />
@@ -176,7 +176,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
             ref={questionRef}
             type="text" 
             name='question' 
-            className='dark:text-black question border-2 border-black rounded-md ps-2 bg-green-300 focus:bg-green-400 w-[90%]'
+            className='dark:bg-blue-950 dark:focus:bg-blue-800  question shadow-md rounded-md ps-2 bg-blue-200 focus:bg-blue-300 p-1 w-[90%] transition-all duration-150'
             required
             rows="3"
           />
@@ -192,11 +192,11 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
 
           {optionList.map((option, index) => {
             return (
-              <div key={index} className='mb-3 flex flex-row justify-center gap-1'>
+              <div key={index} className='mb-3 flex flex-row items-center justify-center gap-1'>
                 <textarea
                 type="text" 
                 name='options'
-                className='dark:text-black options border-2 border-black rounded-md ps-2 bg-green-300 focus:bg-green-400 w-[85%] me-2'
+                className='dark:bg-blue-950 dark:focus:bg-blue-800  options shadow-md rounded-md ps-2 bg-blue-200 focus:bg-blue-300 p-1 w-[85%] me-2 transition-all duration-150'
                 value={option}
                 onChange={(e) => trackOptionChange(e, index)}
                 required
@@ -204,14 +204,14 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
               />
                 { optionList.length >= 3 && <AiOutlineMinusCircle
                   onClick={(e) => removeOption(e, index)}
-                  className='inline text-2xl cursor-pointer'
+                  className='inline text-3xl cursor-pointer hover:fill-red-600 dark:hover:fill-red-300 hover:scale-110 transition-all duration-150 drop-shadow-md'
                 />} 
               </div>
               
             )
           })}
           <button onClick={addOptions}
-            className='dark:text-black mb-4 text-sm bg-blue-200 px-2 py-1 rounded-md drop-shadow-md hover:bg-blue-500 hover:shadow-md transition-all duration-75'
+            className='dark:bg-blue-950 dark:focus:bg-blue-800  mb-4 text-sm bg-blue-200 px-2 py-1 rounded-md drop-shadow-md hover:bg-blue-500 hover:shadow-md transition-all duration-150'
           >
             Add More Option
           </button>
@@ -228,7 +228,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
           <textarea 
             type="text" 
             name='answer' 
-            className='dark:text-black answer border-2 border-black rounded-md ps-2 bg-green-300 mb-4 focus:bg-green-400 w-[90%]'
+            className='dark:bg-blue-950 dark:focus:bg-blue-800  answer shadow-md rounded-md ps-2 py-1 bg-blue-200 mb-4 blue:300-green-400 w-[90%] transition-all duration-150'
             required
             rows='1'
           />
@@ -236,7 +236,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
         <input 
           type='submit' 
           value='Add Question'
-          className='dark:text-black bg-blue-300 px-2 py-1 rounded-md drop-shadow-md hover:bg-blue-800 hover:text-white transition-all duration-75 cursor-pointer'
+          className='dark:bg-blue-950 dark:focus:bg-blue-800  bg-blue-300 px-2 py-1 rounded-md drop-shadow-md hover:bg-blue-800 hover:text-white cursor-pointer transition-all duration-150'
         />
       </form>
     </div>
@@ -244,7 +244,7 @@ function NewQuiz({formData, setFormData, setShowSubmitModal, titleRef, formRef})
     <br/>
     <button 
       onClick={submitData}
-      className='dark:text-black  bg-blue-500 px-2 py-1 text-xl mb-10 rounded-md text-white drop-shadow-lg hover:bg-blue-800 hover:scale-110 transition-all duration-75'
+      className='dark:bg-blue-950 dark:focus:bg-blue-800   bg-blue-500 px-2 py-1 text-xl mb-10 rounded-md text-white drop-shadow-lg hover:bg-blue-800 hover:scale-110 transition-all duration-150'
     >
       Save Quiz
     </button>
