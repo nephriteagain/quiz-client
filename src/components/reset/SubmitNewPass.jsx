@@ -27,7 +27,7 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
 
   const [ lengthBool, setLengthBool ] = useState(false)
   const [  charBool, setCharBool ] = useState(false)
-  const [ symbolBool, setSymbolBool ] = useState(false)
+  const [ symbolBool, setSymbolBool ] = useState(true)
   const [ matchBool, setMatchBool ] = useState(false)
 
 
@@ -71,11 +71,20 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
     setCharBool(passwordCharacterChecker(password))
     setSymbolBool(specialSymbolChecker(password))
     
-    if (lengthBool && charBool && symbolBool && matchBool) {
-      setPasswordValid(true)
-    }
+    
 
   }, [password, confirmPass])
+
+  useEffect(() => {
+    console.log({lengthBool, charBool, symbolBool, matchBool})
+    if (lengthBool && charBool && symbolBool && matchBool) {
+      console.log('valid pass')
+      setPasswordValid(true)
+    } else {
+      setPasswordValid(false)
+      console.log('invalid pass')
+    }
+  }, [matchBool, lengthBool, charBool, symbolBool])
 
 
 
@@ -102,8 +111,8 @@ export default function SubmitNewPass({_id, email, setShowCodeInput, set_Id, set
           onChange={(e) => setConfirmPass(e.currentTarget.value)}
         />
         <button type="submit" 
-          className="dark:bg-green-700 flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity:70"
-          disabled={loading}
+          className="dark:bg-green-700 flex items-center justify-center min-w-[5.6rem] bg-green-300 rounded-md px-3 py-1 text-sm shadow-md drop-shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-100 disabled:opacity-70"
+          disabled={!passwordValid || loading}
         >
           {
             loading ? 
