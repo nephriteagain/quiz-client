@@ -47,6 +47,8 @@ function NewQuiz({
                 description: "answer has no match on options",
                 duration: 3000,
                 variant: "desctructive",
+                className:
+                    "bg-slate-200 dark:bg-slate-800 text-red-700 dark:text-red-400",
             });
         }
 
@@ -61,7 +63,8 @@ function NewQuiz({
                 title: "error",
                 description: "answer should only match one option",
                 duration: 3000,
-                variant: "desctructive",
+                className:
+                    "bg-slate-200 dark:bg-slate-800 text-red-700 dark:text-red-400",
             });
         }
 

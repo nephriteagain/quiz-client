@@ -56,6 +56,8 @@ export default function UpdateQuiz({ loading, setLoading }) {
                         title: "success",
                         description: "quiz updated successfully",
                         duration: 3000,
+                        className:
+                            "bg-slate-200 dark:bg-slate-800 dark:text-white",
                     });
                 })
                 .catch((err) => {
@@ -63,7 +65,8 @@ export default function UpdateQuiz({ loading, setLoading }) {
                         title: "error",
                         description: "something went wrong",
                         duration: 3000,
-                        variant: "desctructive",
+                        className:
+                            "bg-slate-200 dark:bg-slate-800 text-red-700 dark:text-red-400",
                     });
                     console.log(err);
                 })

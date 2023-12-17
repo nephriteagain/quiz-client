@@ -42,6 +42,7 @@ export default function DeleteModal({
                     title: "deleted",
                     description: "quiz deleted successfully",
                     duration: 3000,
+                    className: "bg-slate-200 dark:bg-slate-800 dark:text-white",
                 });
             })
             .catch((err) => {
@@ -50,7 +51,8 @@ export default function DeleteModal({
                     title: "error",
                     description: "something went wrong",
                     duration: 3000,
-                    variant: "destructive",
+                    className:
+                        "bg-slate-200 dark:bg-slate-800 text-red-700 dark:text-red-400",
                 });
             })
             .finally(() => {

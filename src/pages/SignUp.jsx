@@ -68,7 +68,8 @@ function SignUp({ loading, setLoading }) {
                         title: "error",
                         description: "user email already exist",
                         duration: 3000,
-                        variant: "destructive",
+                        className:
+                            "bg-slate-200 dark:bg-slate-800 text-red-700 dark:text-red-400",
                     });
                 }
             })

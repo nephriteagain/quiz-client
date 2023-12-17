@@ -42,6 +42,8 @@ function SubmitModal({
                         title: "success",
                         description: "Quiz successfully created!",
                         duration: 2000,
+                        className:
+                            "bg-slate-200 dark:bg-slate-800 dark:text-white",
                     });
                     titleRef.current.focus;
                 }
@@ -60,7 +62,9 @@ function SubmitModal({
                 toast({
                     title: "Error",
                     description: "something went wrong",
-                    variant: "destructive",
+                    duration: 3000,
+                    className:
+                        "bg-slate-200 dark:bg-slate-800 text-red-700 dark:text-red-400",
                 });
             })
             .finally(() => setLoading(false));
@@ -77,10 +81,10 @@ function SubmitModal({
 
     return (
         <div
-            className="absolute top-0 left-0 z-[2] w-[100vw]"
+            className="fixed top-0 left-0 z-[99999] w-screen h-screen"
             style={{ height: `${bgModalHeight}px` }}
         >
-            <div className="absolute bg-black opacity-70 z-[3] w-[100vw] h-[100%]"></div>
+            <div className="fixed bg-black opacity-70 z-[3] w-screen h-screen"></div>
             <form
                 onSubmit={submitData}
                 className="dark:bg-blue-950 min-w-[350px] min-h-[250px] absolute top-[50vh] left-[50vw] -translate-x-1/2 -translate-y-1/2 px-4 py-4 bg-slate-200 z-[4] rounded-xl"
