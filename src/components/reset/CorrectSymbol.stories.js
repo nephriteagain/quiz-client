@@ -1,24 +1,22 @@
-import { CorrectSymbol } from './NewPasswordChecker'
-import '../../index.css'
+import { CorrectSymbol } from "./NewPasswordChecker";
+import "../../index.css";
 
 export default {
-    title: 'Correct Symbol',
+    title: "Correct Symbol",
     component: CorrectSymbol,
     parameters: {
-        layout: 'centered'
+        layout: "centered",
     },
-    tags: ['autodocs']
-}
-
-
+    tags: ["autodocs"],
+};
 
 export const Ok = {
     args: {
-        symbolBool: true
-    }
-} 
+        symbolBool: true,
+    },
+};
 export const BadSymbol = {
     args: {
-        symbolBool: false
-    }
-}
+        symbolBool: false,
+    },
+};

@@ -1,27 +1,25 @@
 import SignOut from "./Signout";
-import '../../index.css'
+import "../../index.css";
 
 export default {
-    title: 'Signout',
+    title: "Signout",
     component: SignOut,
     parameters: {
-        layout: 'centered'
+        layout: "centered",
     },
-    tags: ['autodocs']
-}
-
-
+    tags: ["autodocs"],
+};
 
 export const Default = {
     args: {
         loading: false,
-        handleClick: () => {}
-    }
-}
+        handleClick: () => {},
+    },
+};
 
 export const Clicked = {
     args: {
         loading: true,
-        handleClick: () => {}
-    }
-}
+        handleClick: () => {},
+    },
+};

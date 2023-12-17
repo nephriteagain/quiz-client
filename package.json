@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test:unit": "vitest --root src/"
+    "test:unit": "vitest --root src/",
+    "format": "prettier --write \"src/**/*.{js,jsx}\""
+    
   },
   "dependencies": {
     "@radix-ui/react-toast": "^1.1.5",
@@ -46,6 +48,7 @@
     "autoprefixer": "^10.4.14",
     "jsdom": "^22.1.0",
     "postcss": "^8.4.21",
+    "prettier": "^3.1.1",
     "prop-types": "^15.8.1",
     "storybook": "^7.4.0",
     "storybook-react-context": "^0.6.0",

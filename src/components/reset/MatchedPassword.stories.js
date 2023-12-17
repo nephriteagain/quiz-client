@@ -1,23 +1,23 @@
 import { MatchedPassword } from "./NewPasswordChecker";
-import '../../index.css'
+import "../../index.css";
 
 export default {
-    title: 'MatchedPassword',
+    title: "MatchedPassword",
     component: MatchedPassword,
     parameters: {
-        layout: 'centered'
+        layout: "centered",
     },
-    tags: ['autodocs']
-}
+    tags: ["autodocs"],
+};
 
 export const Matched = {
     args: {
-        matchBool: true
-    }
-}
+        matchBool: true,
+    },
+};
 
 export const NotMatched = {
     args: {
-        matchBool: false
-    }
-}
+        matchBool: false,
+    },
+};

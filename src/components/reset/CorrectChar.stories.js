@@ -1,23 +1,23 @@
 import { CorrrectChar } from "./NewPasswordChecker";
-import '../../index.css'
+import "../../index.css";
 
 export default {
-    title: 'CorrectChar',
+    title: "CorrectChar",
     component: CorrrectChar,
     parameters: {
-        layout: 'centered'
+        layout: "centered",
     },
-    tags: ['autodocs']
-}
+    tags: ["autodocs"],
+};
 
 export const GoodChars = {
     args: {
-        charBool: true
-    }
-}
+        charBool: true,
+    },
+};
 
 export const BadChars = {
     args: {
-        charBool: false
-    }
-}
+        charBool: false,
+    },
+};

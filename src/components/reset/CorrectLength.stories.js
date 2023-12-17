@@ -1,23 +1,23 @@
 import { CorrectLength } from "./NewPasswordChecker";
-import '../../index.css'
+import "../../index.css";
 
 export default {
-    title: 'CorrectLength',
+    title: "CorrectLength",
     component: CorrectLength,
     parameters: {
-        layout: 'centered'
+        layout: "centered",
     },
-    tags: ['autodocs']
-}
+    tags: ["autodocs"],
+};
 
 export const GoodLength = {
     args: {
-        lengthBool: true
-    }
-}
+        lengthBool: true,
+    },
+};
 
 export const ShortLength = {
     args: {
-        lengthBool: false
-    }
-}
+        lengthBool: false,
+    },
+};

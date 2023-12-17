@@ -1,29 +1,25 @@
-import SubmitEmail from './SubmitEmail'
-import '../../index.css'
+import SubmitEmail from "./SubmitEmail";
+import "../../index.css";
 
 export default {
-    title: 'SubmitEmail',
+    title: "SubmitEmail",
     component: SubmitEmail,
     parameters: {
-        layout: 'centered'
+        layout: "centered",
     },
-    tags: ['autodocs']
-}
-
+    tags: ["autodocs"],
+};
 
 export const Default = {
     args: {
         loading: false,
-        setLoading: () => {}
-
-    }
-}
+        setLoading: () => {},
+    },
+};
 
 export const Clicked = {
     args: {
         ...Default.args,
-        loading: true
-    }
-}
-
-
+        loading: true,
+    },
+};
