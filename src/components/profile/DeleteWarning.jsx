@@ -1,29 +1,22 @@
-import { useEffect, useRef } from "react";
-import axios from "axios";
-
 import { BsCheck2 } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { RotatingLines } from "react-loader-spinner";
+
+import { useState } from "react";
+import axios from "axios";
 import { useToast } from "../shadcn/ui/use-toast";
 
-export default function DeleteModal({
-    setShowDeleteModal,
-    deleteQuizId,
-    deleteRef,
-    setQuizDeleteId,
-    showDeleteModal,
-    fetchUserData,
-    loading,
-    setLoading,
-}) {
-    const modalRef = useRef();
-    const { toast } = useToast();
 
-    /**
-     *
-     * @param {string} id quiz id
-     * @description permanently delete the selected quiz from the db
-     */
+/**
+ * 
+ * @param {string} id 
+ * @param {() => void} fetchUserData 
+ * @param {(id:string) => void} cancel
+ */
+export default function DeleteWarning({id,fetchUserData,cancel, userQuiz, setQuizList}) {
+
+    const { toast } = useToast()
+    const [  loading, setLoading ] = useState(false)
+
     async function deleteQuiz(id) {
         setLoading(true);
         await axios
@@ -38,6 +31,7 @@ export default function DeleteModal({
             )
             .then(async (res) => {
                 await fetchUserData();
+                setQuizList(userQuiz.map(quiz => ({quiz,show:false})))
                 toast({
                     title: "deleted",
                     description: "quiz deleted successfully",
@@ -56,44 +50,14 @@ export default function DeleteModal({
                 });
             })
             .finally(() => {
-                setShowDeleteModal(false);
                 setLoading(false);
-                setQuizDeleteId(null);
             });
     }
-
-    /**
-     * close the delete confirmation modal
-     */
-    function cancelDelete() {
-        setShowDeleteModal(false);
-    }
-
-    useEffect(() => {
-        window.addEventListener("resize", () => {
-            setShowDeleteModal(false);
-        });
-        window.addEventListener("scroll", () => {
-            setShowDeleteModal(false);
-        });
-    }, []);
-
-    useEffect(() => {
-        if (deleteRef.current === null) return;
-
-        const deleteRect = deleteRef.current.getBoundingClientRect();
-
-        modalRef.current.style.width = `${parseInt(deleteRect.width)}px`;
-        modalRef.current.style.top = `${
-            parseInt(deleteRect.top) + parseInt(deleteRect.height) / 2.4
-        }px`;
-        modalRef.current.style.left = `${parseInt(deleteRect.left)}px`;
-    }, [deleteQuizId]);
-
+    
+    
     return (
         <div
-            className="absolute w-fit h-fit bg-red-200 rounded-md"
-            ref={modalRef}
+            className="absolute bottom-0 left-0 w-full h-fit bg-red-200 rounded-md"
         >
             <div className="text-center font-semibold text-lg mt-2 mb-4">
                 Confirm Delete?
@@ -102,7 +66,7 @@ export default function DeleteModal({
                 <div className="text-center pb-3">
                     <button
                         className="bg-red-500 text-white px-2 py-1 rounded-md me-2 shadow-md drop-shadow-md hover:bg-red-600 transition-all duration-100 active:scale-95 disabled:opacity-70"
-                        onClick={() => deleteQuiz(deleteQuizId)}
+                        onClick={() => deleteQuiz(id)}
                         disabled={loading}
                     >
                         <BsCheck2 className="inline me-1" />
@@ -110,7 +74,7 @@ export default function DeleteModal({
                     </button>
                     <button
                         className="bg-green-500 text-white px-2 py-1 rounded-md ms-2 shadow-md drop-shadow-md hover:bg-green-600 transition-all duration-100 active:scale-95 disabled:opacity-70"
-                        onClick={cancelDelete}
+                        onClick={() => cancel(id)}
                         disabled={loading}
                     >
                         <RxCross2 className="inline me-1" />
@@ -119,5 +83,5 @@ export default function DeleteModal({
                 </div>
             </div>
         </div>
-    );
+    )
 }

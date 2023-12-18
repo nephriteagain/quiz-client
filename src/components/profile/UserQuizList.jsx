@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -7,34 +7,17 @@ import { FiEdit } from "react-icons/fi";
 import { useGlobalContext } from "../../context/UserContext";
 
 import QuizModal from "./QuizModal";
-import DeleteModal from "./DeleteModal";
+import DeleteWarning from "./DeleteWarning";
 
 function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
     const [showQuizModal, setShowQuizModal] = useState(false);
     const [quizModalData, setQuizModalData] = useState({});
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [deleteQuizId, setQuizDeleteId] = useState(null);
-    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [ quizList, setQuizList ] = useState(userQuiz.map(quiz => ({quiz,show:false})))
 
     const { user, setQuizToUpdate } = useGlobalContext();
 
-    const deleteRef = useRef(null);
-    const editRef = useRef(null);
 
     const navigate = useNavigate();
-
-    /**
-     *
-     * @param {string} id show information and actions about selected quiz
-     */
-    function displayModal(id) {
-        const dataToDisplay = userQuiz.find((quiz) => {
-            return quiz._id === id;
-        });
-
-        setQuizModalData(dataToDisplay);
-        setShowQuizModal(true);
-    }
 
     /**
      *
@@ -43,11 +26,23 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
      * @description show the delete confirmation modal
      */
     function confirmDelete(id, e) {
-        setShowDeleteModal(true);
-        setQuizDeleteId(id);
-
-        deleteRef.current = e.currentTarget.parentNode;
+        setQuizList([...userQuiz.map(quiz => {
+            if (id === quiz._id) {
+                console.log(id)
+                return {quiz, show:true}
+            }
+            return {quiz,show:false}
+        })])
     }
+
+    function cancel(id) {
+        setQuizList(userQuiz.map(quiz => {
+            if (id === quiz._id) {
+                return {quiz, show:false}
+            }
+            return {quiz, show:false}
+        }))
+    }    
 
     /**
      *
@@ -64,7 +59,7 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
         return (
             <>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 mt-10">
-                    {userQuiz.map((quiz, index) => {
+                    {quizList.map(({quiz, show}) => {
                         const { title, createdAt, _id } = quiz;
                         const dateObj = new Date(createdAt);
                         const options = {
@@ -85,7 +80,7 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
 
                         return (
                             <div
-                                key={index}
+                                key={_id}
                                 className="dark:text-white dark:bg-blue-950 container drop-shadow-xl shadow-xl bg-blue-100 px-2 py-2 rounded-xl hover:-translate-y-2 transition-all duration-500 overflow-visible max-w-[300px] mx-auto relative group"
                             >
                                 <div className="text-lg font-semibold mb-4">
@@ -109,7 +104,6 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
                                                     top:0,
                                                     behavior: 'smooth'
                                                 })
-                                                displayModal(_id)
                                             }}
                                         >
                                             Show Quiz
@@ -124,6 +118,14 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
                                     className="absolute top-8 right-2 text-lg text-blue-500 invisible group-hover:visible hover:scale-110 transition-all duration-100 cursor-pointer"
                                     onClick={(e) => confirmUpdate(quiz, e)}
                                 />
+                                {show  && 
+                                    <DeleteWarning  
+                                        id={_id} 
+                                        fetchUserData={fetchUserData}  
+                                        cancel={cancel}
+                                        userQuiz={userQuiz}
+                                        setQuizList={setQuizList}
+                                    />}
                             </div>
                         );
                     })}
@@ -133,18 +135,6 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
                         quizModalData={quizModalData}
                         setQuizModalData={setQuizModalData}
                         setShowQuizModal={setShowQuizModal}
-                    />
-                )}
-                {showDeleteModal && (
-                    <DeleteModal
-                        showDeleteModal={showDeleteModal}
-                        setShowDeleteModal={setShowDeleteModal}
-                        deleteQuizId={deleteQuizId}
-                        setQuizDeleteId={setQuizDeleteId}
-                        deleteRef={deleteRef}
-                        fetchUserData={fetchUserData}
-                        loading={deleteLoading}
-                        setLoading={setDeleteLoading}
                     />
                 )}
             </>
