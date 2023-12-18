@@ -104,7 +104,13 @@ function UserQuizList({ userQuiz, setUserQuiz, fetchUserData }) {
                                     <div className="text-center">
                                         <button
                                             className="dark:bg-orange-600 bg-orange-300 px-3 py-1 rounded-md drop-shadow-md shadow-md my-2 hover:scale-110 hover:bg-yellow-300 transition-all duration-100"
-                                            onClick={() => displayModal(_id)}
+                                            onClick={() => {
+                                                window.scrollTo({
+                                                    top:0,
+                                                    behavior: 'smooth'
+                                                })
+                                                displayModal(_id)
+                                            }}
                                         >
                                             Show Quiz
                                         </button>
